@@ -18,7 +18,7 @@ class Register {
     private $password;
     private $email;
     private $stmt;
-    private $row;
+    private $cell;
 
     public function doRegistration(string $user, string $pass, string $email) {
         $this->username = $user;
@@ -43,29 +43,35 @@ class Register {
             die("Invalid E-Mail Address");
         }
 
-        // Using an sql query we first check if the username they want is in use
-        $this->row = Database::selectOne("users", "username = ?", [$this->username]);
+        // First an sql query will check if the username they want is in use or not.
+        // The selectOne() function is part of a custom wrapper on the PDO library.
+        // Here we use PDO prepared statements. These statements have special tokens
+        // (technically called parameters) to protect against SQL injection attacks.
+        // For more information on SQL injections, see Wikipedia:
+        // http://en.wikipedia.org/wiki/SQL_Injection
 
-        // If a row was returned, then we know a matching username was found in
+
+        // This function takes three parameters, the table name, the where
+        // clause, and the query parameters, and it returns a single cell.
+        $this->cell = Database::selectOne("users", "username = ?", [$this->username]);
+
+        // If a cell was returned, then we know a matching username was found in
         // the database already and we should not allow the user to continue.
-        if($this->row) {
+        if($this->cell) {
             die("This username is already in use");
         }
 
         // Now we perform the same type of check for the email address, in order
         // to ensure that it is unique.
-        $this->row = Database::selectOne("users", "email = ?", [$this->email]);
+        $this->cell = Database::selectOne("users", "email = ?", [$this->email]);
 
-        if($this->row)
+        if($this->cell)
         {
             die("This email address is already registered");
         }
 
-        // An INSERT query is used to add new rows to a database table.
-        // Again, we are using special tokens (technically called parameters) to
-        // protect against SQL injection attacks.
-        // For more information on SQL injections, see Wikipedia:
-        // http://en.wikipedia.org/wiki/SQL_Injection
+        // Here we are preparing to insert the users credentials into the database,
+        // again we are using PDO prepared statements with tokens.
         $query = "
             INSERT INTO users (
                 username,
@@ -80,7 +86,11 @@ class Register {
             )
         ";
 
-        // Generate a salt, and encrypt the password with it.
+        // Before we execute our query, it is better to do some password encryption first.
+        // That way the users password is never stored in plaintext in the database.
+        // Using the Encryption class we generate a salt (a long random string),
+        // and hash the password with the salt concatenated on the end.
+        // Check out the Encryption class for more information on how it works.
         $validate = new Encryption();
         $salt = $validate->generateSalt();
         $encryptedPass = $validate->eCrypt($pass, $salt);

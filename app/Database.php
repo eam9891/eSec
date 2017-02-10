@@ -15,14 +15,12 @@ include_once ('Connect.php');
 class Database extends Connect {
 
     // If you need to open a connection directly
-    public function connect()
-    {
+    public function connect() {
         return Connect::openConnection();
     }
 
     // If you need to close a connection directly
-    public function disconnect()
-    {
+    public function disconnect() {
         Connect::$connection = null;
     }
 
@@ -48,7 +46,7 @@ class Database extends Connect {
 
 
     /**
-     * Returns 1 row with a where clause
+     * Returns 1 column from a row with a where clause
      * @param string $table
      * @param string $where
      * @param array $query_params
@@ -88,7 +86,7 @@ class Database extends Connect {
 
 
     /**
-     * Updates a table and sets
+     * Update and sets values
      * @param string $table
      * @param string $set
      * @param array $query_params
@@ -108,12 +106,19 @@ class Database extends Connect {
     }
 
 
-    public static function delete($query, array $data)
+    /**
+     * Deletes ... from ... where ...
+     * @param string $table
+     * @param string $delete
+     * @param array $query_params
+     */
+    public static function deleteWhere(string $table, string $delete, array $query_params)
     {
+        $query = "DELETE $delete FROM $table WHERE $query_params";
         try
         {
             $stmt = Connect::openConnection()->prepare($query);
-            $stmt->execute($data);
+            $stmt->execute($query_params);
         }
         catch (PDOException $ex)
         {

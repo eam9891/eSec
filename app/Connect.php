@@ -10,15 +10,15 @@
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
 
-include_once("IDatabase.php");
+include_once("IConnect.php");
 
-abstract class Connect implements IDatabase {
+abstract class Connect implements IConnect {
 
-    protected static $server = IDatabase::DB_HOST;
-    protected static $currentDB = IDatabase::DB_NAME;
-    protected static $user = IDatabase::DB_USERNAME;
-    protected static $pass = IDatabase::DB_PASSWORD;
-    protected static $dbtype = IDatabase::DB_DRIVER;
+    protected static $server = IConnect::DB_HOST;
+    protected static $currentDB = IConnect::DB_NAME;
+    protected static $user = IConnect::DB_USERNAME;
+    protected static $pass = IConnect::DB_PASSWORD;
+    protected static $dbtype = IConnect::DB_DRIVER;
     protected static $connection;
 
     protected static function openConnection() {

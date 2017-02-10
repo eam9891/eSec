@@ -8,7 +8,7 @@
  */
 
 include_once('ILogin.php');
-include_once('Login.php');
+include_once('LoginManager.php');
 include_once('Database.php');
 include_once('Encryption.php');
 
@@ -77,7 +77,7 @@ class Bouncer extends ILogin {
     protected function doLogin()
     {
         if ($this->login_ok) {
-            $logMeIn = new Login();
+            $logMeIn = new LoginManager();
             $logMeIn->checkLogin();
         } else {
             // TODO: Implement some error reporting
