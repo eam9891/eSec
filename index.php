@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +26,8 @@
 
         <form action="app/LoginClient.php" method="POST">
             <div class="imgcontainer">
-                <!--<img src="images/img_avatar2.png" alt="Avatar" class="avatar">-->
-                <h2>Login</h2>
+                <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
+                <h3>Login</h3>
             </div>
 
             <div class="container">
@@ -38,7 +42,6 @@
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="cancelbtn">Cancel</button>
                 <span class="psw">Forgot <a href="#">password?</a></span>
                 <button onclick="document.getElementById('registerID').style.display='block'"
                         class="registerButton"
@@ -51,26 +54,32 @@
     </div>
 
     <div class="col-6 col-m-9">
-        <h1>Some Content</h1>
-        <p>this is just filling space. this is just filling space. this is just filling space.
-            this is just filling space. this is just filling space. this is just filling space.
-        </p>
-        <h1>Some Content</h1>
-        <p>this is just filling space. this is just filling space. this is just filling space.
-            this is just filling space. this is just filling space. this is just filling space.
-        </p>
-        <h1>Some Content</h1>
-        <p>this is just filling space. this is just filling space. this is just filling space.
-            this is just filling space. this is just filling space. this is just filling space.
-        </p>
-        <h1>Some Content</h1>
-        <p>this is just filling space. this is just filling space. this is just filling space.
-            this is just filling space. this is just filling space. this is just filling space.
-        </p>
-        <h1>Some Content</h1>
-        <p>this is just filling space. this is just filling space. this is just filling space.
-            this is just filling space. this is just filling space. this is just filling space.
-        </p>
+        <?php
+        include_once ('app/Database.php');
+        try {
+
+            $query = 'SELECT postID, postTitle, postDescription, postDate FROM front_blog ORDER BY postID DESC';
+            $openConn = new Database();
+            $conn = $openConn->connect();
+
+            $stmt = $conn->query($query);
+
+
+            while($row = $stmt->fetch()){
+
+                echo '<div>';
+                echo '<h1><a href="viewpost.php?id='.$row['postID'].'">'.$row['postTitle'].'</a></h1>';
+                echo '<p>Posted on '.date('jS M Y H:i:s', strtotime($row['postDate'])).'</p>';
+                echo '<p>'.$row['postDescription'].'</p>';
+                echo '<p><a href="viewpost.php?id='.$row['postID'].'">Read More</a></p>';
+                echo '</div>';
+
+            }
+
+        } catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+        ?>
     </div>
 
     <div class="col-3 col-m-12">

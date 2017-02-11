@@ -9,8 +9,10 @@
 
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
-
-include_once('Bouncer.php');
+function __autoload($class_name)
+{
+    include $class_name.'.php';
+}
 
 class LoginClient {
     private $login;

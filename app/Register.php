@@ -19,6 +19,7 @@ class Register {
     private $email;
     private $stmt;
     private $cell;
+    private $role = "user";
 
     public function doRegistration(string $user, string $pass, string $email) {
         $this->username = $user;
@@ -77,12 +78,14 @@ class Register {
                 username,
                 password,
                 salt,
-                email
+                email,
+                role
             ) VALUES (
                 :username,
                 :password,
                 :salt,
-                :email
+                :email,
+                :role
             )
         ";
 
@@ -102,7 +105,8 @@ class Register {
             ':username' => $this->username,
             ':password' => $encryptedPass,
             ':salt' => $salt,
-            ':email' => $this->email
+            ':email' => $this->email,
+            ':role' => $this->role
         );
 
         $this->stmt = Database::insert($query, $query_params);

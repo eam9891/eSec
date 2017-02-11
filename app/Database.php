@@ -15,18 +15,19 @@ include_once ('Connect.php');
 class Database extends Connect {
 
     // If you need to open a connection directly
-    public function connect() {
+    public static function connect() {
         return Connect::openConnection();
     }
 
     // If you need to close a connection directly
-    public function disconnect() {
+    public static function disconnect() {
         Connect::$connection = null;
+        session_destroy();
     }
 
 
     /**
-     * Returns all from a row with a where clause
+     * SELECT * FROM $table WHERE $where
      * @param string $table
      * @param string $where
      * @param array $query_params
@@ -63,6 +64,7 @@ class Database extends Connect {
         }
         return $stmt->fetch();
     }
+
 
 
 

@@ -12,6 +12,8 @@ ini_set("display_errors", 1);
 
 include_once("IConnect.php");
 
+
+
 abstract class Connect implements IConnect {
 
     protected static $server = IConnect::DB_HOST;
@@ -67,7 +69,7 @@ abstract class Connect implements IConnect {
             undo_magic_quotes_gpc($_GET);
             undo_magic_quotes_gpc($_COOKIE);
         }
-
+        session_start();
         return self::$connection;
     }
 }

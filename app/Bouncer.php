@@ -7,11 +7,6 @@
  * Time: 10:27 PM
  */
 
-include_once('ILogin.php');
-include_once('LoginManager.php');
-include_once('Database.php');
-include_once('Encryption.php');
-
 class Bouncer extends ILogin {
 
     public function checkLogin() {
@@ -47,8 +42,9 @@ class Bouncer extends ILogin {
                 // We will use this index in the Bouncer class to determine whether
                 // or not the user is logged in and what their role is.
                 //  We can also use it to retrieve the user's details.
-                session_start();
+
                 $_SESSION['user'] = $row;
+                //$_SESSION['role'] = $row['role'];
 
                 // Before we redirect the user we will flip the status of active to 1
                 // This value is 0 by default and is used to determine if the user is logged in or not.
@@ -86,4 +82,3 @@ class Bouncer extends ILogin {
         }
     }
 }
-$bouncer = new Bouncer();

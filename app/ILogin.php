@@ -15,5 +15,7 @@ abstract class ILogin {
     protected $validatePass;
     protected $stmt;
     protected $login_ok = false;
+    protected $_USER;
+    protected $userID;
 
 }
