@@ -9,16 +9,17 @@
 
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
-function __autoload($class_name)
-{
-    include $class_name.'.php';
-}
+
+include_once ('Bouncer.php');
 
 class LoginClient {
     private $login;
+
+
     public function __construct() {
+
         $this->login = new Bouncer();
-        $this->login->checkLogin();
+        $this->login->checkLogin($_POST['username'], $_POST['password']);
     }
 }
 $worker = new LoginClient();

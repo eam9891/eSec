@@ -66,7 +66,14 @@ class Database extends Connect {
     }
 
 
-
+    public static function query($query) {
+        try {
+            Connect::openConnection()->query($query);
+        }
+        catch (PDOException $ex) {
+            die("Failed to run query: " . $ex->getMessage());
+        }
+    }
 
     /**
      * Insert data

@@ -1,5 +1,5 @@
 <?php
-
+include_once ('app/Database.php');
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
 
     <div class="col-6 col-m-9">
         <?php
-        include_once ('app/Database.php');
+
         try {
 
             $query = 'SELECT postID, postTitle, postDescription, postDate FROM front_blog ORDER BY postID DESC';

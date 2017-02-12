@@ -7,15 +7,15 @@
  * Time: 11:16 AM
  */
 abstract class ILogin {
-    public abstract function checkLogin();
-    protected abstract function doLogin();
+
     protected $username;
     protected $password;
     protected $encryptedPass;
     protected $validatePass;
     protected $stmt;
     protected $login_ok = false;
-    protected $_USER;
+    protected $row;
     protected $userID;
 
+    public abstract function checkLogin($username, $password);
 }
