@@ -1,16 +1,28 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Ethan
- * Date: 2/11/2017
- * Time: 6:07 PM
- */
+    /**
+    * Created by PhpStorm.
+    * User: Ethan
+    * Date: 2/11/2017
+    * Time: 6:07 PM
+    */
 
-error_reporting(E_ALL | E_STRICT);
-ini_set("display_errors", 1);
+    session_start();
 
-include_once ("../app/Database.php");
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 1);
+
+    include_once ('../app/Database.php');
+    include_once ('../app/User.php');
+
+    $db = new Database();
+    $usr = new User();
+
+    $USER = $usr->getUser($_SESSION['id']);
+    if ($USER->getRole() !== "admin") {
+        header("Location: ../index.php");
+        die("Redirecting to: ../index.php");
+    }
 
 class ViewBlog {
 
@@ -53,18 +65,17 @@ class ViewBlog {
                 color:#000;
             }
         </style>
-        
-        
+        <link rel="stylesheet" type="text/css" href="style/normal.css">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+
 TAG;
-        echo'<table>';
-            echo'<tr>';
-                echo'<th>Title</th>';
-                echo'<th>Date</th>';
-                echo'<th>Action</th>';
-            echo'</tr>';
 
-
-            $query = 'SELECT postID, postTitle, postDate FROM front_blog ORDER BY postID DESC';
+            $query = 'SELECT postID, postTitle, postDate FROM blogMain ORDER BY postID DESC';
             $stmt = $db->query($query);
 
             while($row = $stmt->fetch()){
@@ -72,14 +83,12 @@ TAG;
                     echo'<td>'.$row['postTitle'].'</td>';
                     echo'<td>'.date('jS M Y', strtotime($row['postDate'])).'</td>';
                     echo'<td>';
-                        echo'<a href="edit-post.php?id='.$row['postID'].'">Edit</a>';
+                        echo'<a href="editPost.php?id='.$row['postID'].'">Edit</a>&nbsp';
                         echo'<a href="javascript:delpost('.$row['postID'].','.$row['postTitle'].')">Delete</a>';
                     echo '</td>';
                 echo '</tr>';
             }
-
-
-
         echo'</table>';
+
     }
 }

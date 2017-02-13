@@ -15,6 +15,16 @@
         header("Location: ../index.php");
         die("Redirecting to: ../index.php");
     }
+
+    //show message from add / edit page
+    if(isset($_GET['delpost'])){
+        //DELETE FROM front_blog WHERE postID = :postID
+        //$stmt->execute(array(':postID' => $_GET['delpost']));
+        $db->deleteWhere("front_blog", "postID = ?", $_GET['delpost']);
+        header('Location: index.php?action=deleted');
+        exit;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -25,24 +35,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Underground Art School </title>
 
-    <script language="JavaScript" type="text/javascript">
-        function delpost(id, title)
-        {
-            if (confirm("Are you sure you want to delete '" + title + "'"))
-            {
-                window.location.href = 'index.php?delpost=' + id;
-            }
-        }
-    </script>
+
     <style>
-
-
-
         #wrapper {
             margin:auto;
-            width:900px;
+            width:80%;
+        }
+        #adminNav {
+            padding-left: 0;
         }
 
+        #adminNav li {
+            float: left;
+            list-style: none;
+            margin-right: 20px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            text-align: center;
+        }
         form input {
             border: 1px solid #999999;
             border-bottom-color: #cccccc;
@@ -82,33 +94,45 @@
         }
 
         iframe {
-            width: 100%;
-            height: 500px;
+            height:calc(100vh - 4px);
+            width:calc(80vw - 4px);
+            border: 0;
         }
 
 
     </style>
-
+    <script language="JavaScript" type="text/javascript">
+        function delpost(id, title)
+        {
+            if (confirm("Are you sure you want to delete '" + title + "'"))
+            {
+                window.location.href = 'index.php?delpost=' + id;
+            }
+        }
+    </script>
 </head>
 <body>
-<div class="header">
-    <img src="../images/banner.jpg">
-</div>
-<div id="wrapper">
-    <h1>UAS Admin Portal</h1>
-    <form name="adminTools" action="AdminClient.php" method="POST" target="display">
-        <button type="submit" name="request" value="ViewBlog"> View Blog </button><br>
-        <button type="submit" name="request" value="ViewUsers"> Users </button><br>
-        <button type="submit" name="request" value="NewPost"> New Post </button><br>
-        <button type="submit" name="request" value="SystemStats"> System Stats </button><br>
-    </form>
-    <br>
+    <div class="header">
+        <img src="../images/banner.jpg">
+    </div>
+    <div id="wrapper">
+        <?php
+            //show message from add / edit page
+            if(isset($_GET['action'])){
+                echo '<h3>Post '.$_GET['action'].'.</h3>';
 
-    <iframe name="display" align="center">Stuff</iframe>
+            }
+        ?>
+        <form name="adminTools" action="AdminClient.php" method="POST" target="display">
+            <ul id="adminNav">
+                <li><button type="submit" name="request" value="ViewBlog"> View Blog </button></li>
+                <li><button type="submit" name="request" value="ViewUsers"> Users </button></li>
+                <li><button type="submit" name="request" value="NewPost"> New Post </button></li>
+                <li><button type="submit" name="request" value="SystemStats"> System Stats </button></li>
 
-
-
-</div>
-
+            </ul>
+        </form><br>
+        <iframe name="display" align="center">Stuff</iframe>
+    </div>
 </body>
 </html>

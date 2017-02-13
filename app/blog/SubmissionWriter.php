@@ -6,7 +6,8 @@
  * Date: 2/12/2017
  * Time: 4:32 AM
  */
-class SubmissionWriter
-{
+class SubmissionWriter implements IBlogWriter {
+    public function write(Article $obj) {
 
+    }
 }

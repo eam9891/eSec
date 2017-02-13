@@ -1,5 +1,7 @@
 <?php
 include_once ('app/Database.php');
+include_once ('app/blog/ArticleFactory.php');
+$articleFactory = new ArticleFactory();
 ?>
 
 <!DOCTYPE html>
@@ -10,20 +12,22 @@ include_once ('app/Database.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Underground Art School </title>
 
+    <link rel="stylesheet" type="text/css" href="style/framework.css">
     <link rel="stylesheet" type="text/css" href="style/loginForm.css">
     <link rel="stylesheet" type="text/css" href="style/normal.css">
-    <link rel="stylesheet" type="text/css" href="style/register.css">
+    <link rel="stylesheet" type="text/css" href="style/modals.css">
+
+
+    <link rel="stylesheet" href="style/tablet.css" media="only screen and (min-width: 600px) and (max-width: 1024px)">
+    <link rel="stylesheet" href="style/mobile.css" media="only screen and (max-width: 600px)">
 </head>
 <body>
 
-<div class="header">
-    <img src="images/banner.jpg">
-</div>
+<header><img src="images/banner.jpg" align="center"></header>
 
 <div class="row">
 
     <div class="col-3 col-m-3 menu">
-
         <form action="app/LoginClient.php" method="POST">
             <div class="imgcontainer">
                 <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
@@ -31,10 +35,10 @@ include_once ('app/Database.php');
             </div>
 
             <div class="container">
-                <label><b>Username</b></label>
+                <!--<label><b>Username</b></label>-->
                 <input type="text" placeholder="Enter Username" name="username" required>
 
-                <label><b>Password</b></label>
+                <!--<label><b>Password</b></label>-->
                 <input type="password" placeholder="Enter Password" name="password" required>
 
                 <button type="submit">Login</button>
@@ -44,7 +48,7 @@ include_once ('app/Database.php');
             <div class="container" style="background-color:#f1f1f1">
                 <span class="psw">Forgot <a href="#">password?</a></span>
                 <button onclick="document.getElementById('registerID').style.display='block'"
-                        class="registerButton"
+                        class="button"
                         style="width:auto;"
                 >
                     Register now for free!
@@ -53,33 +57,8 @@ include_once ('app/Database.php');
         </form>
     </div>
 
-    <div class="col-6 col-m-9">
-        <?php
-
-        try {
-
-            $query = 'SELECT postID, postTitle, postDescription, postDate FROM front_blog ORDER BY postID DESC';
-            $openConn = new Database();
-            $conn = $openConn->connect();
-
-            $stmt = $conn->query($query);
-
-
-            while($row = $stmt->fetch()){
-
-                echo '<div>';
-                echo '<h1><a href="viewpost.php?id='.$row['postID'].'">'.$row['postTitle'].'</a></h1>';
-                echo '<p>Posted on '.date('jS M Y H:i:s', strtotime($row['postDate'])).'</p>';
-                echo '<p>'.$row['postDescription'].'</p>';
-                echo '<p><a href="viewpost.php?id='.$row['postID'].'">Read More</a></p>';
-                echo '</div>';
-
-            }
-
-        } catch(PDOException $e) {
-            echo $e->getMessage();
-        }
-        ?>
+    <div class="col-6 col-m-9 blog">
+        <?php $articleFactory->showBlog(); ?>
     </div>
 
     <div class="col-3 col-m-12">

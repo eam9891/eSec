@@ -6,7 +6,7 @@
  * Date: 2/12/2017
  * Time: 1:55 AM
  */
-class GetWriter {
+class GetWriters {
     public static function getWriter() {
         // grab request variable
         $format = $_REQUEST['format'];
