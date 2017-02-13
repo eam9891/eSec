@@ -6,6 +6,7 @@
  * Date: 2/12/2017
  * Time: 1:48 AM
  */
+include_once ('IBlogWriter.php');
 class ArticleXMLWriter implements IBlogWriter {
     public function write(Article $obj)
     {

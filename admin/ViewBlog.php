@@ -26,7 +26,7 @@
 
 class ViewBlog {
 
-    public function returnRequest() {
+    public function adminRequest() {
         $this->showBlog();
 
     }

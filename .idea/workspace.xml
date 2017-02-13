@@ -2,26 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c7cea03-1c37-4b62-bd91-e4f9b540df2a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/undergroundartschool.com.iml" afterPath="$PROJECT_DIR$/.idea/undergroundartschool.com.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/AdminClient.php" afterPath="$PROJECT_DIR$/admin/AdminClient.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/ViewBlog.php" afterPath="$PROJECT_DIR$/admin/ViewBlog.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/addPost.php" afterPath="$PROJECT_DIR$/admin/addPost.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/editPost.php" afterPath="$PROJECT_DIR$/admin/editPost.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.php" afterPath="$PROJECT_DIR$/admin/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/Article.php" afterPath="$PROJECT_DIR$/app/blog/Article.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Database.php" afterPath="$PROJECT_DIR$/app/Database.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/ArticleFactory.php" afterPath="$PROJECT_DIR$/app/blog/ArticleFactory.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/ArticleJSONWriter.php" afterPath="$PROJECT_DIR$/app/blog/ArticleJSONWriter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/ArticleWriter.php" afterPath="$PROJECT_DIR$/app/blog/ArticleWriter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/ArticleXMLWriter.php" afterPath="$PROJECT_DIR$/app/blog/ArticleXMLWriter.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/GetWriters.php" afterPath="$PROJECT_DIR$/app/blog/GetWriters.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/IBlogWriter.php" afterPath="$PROJECT_DIR$/app/blog/IBlogWriter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/blog/SubmissionWriter.php" afterPath="$PROJECT_DIR$/app/blog/SubmissionWriter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/framework.css" afterPath="$PROJECT_DIR$/style/framework.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/loginForm.css" afterPath="$PROJECT_DIR$/style/loginForm.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/modals.css" afterPath="$PROJECT_DIR$/style/modals.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/normal.css" afterPath="$PROJECT_DIR$/style/normal.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,108 +86,82 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.49003518">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ArticleWriter.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/blog/ArticleWriter.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="normal.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/style/normal.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="51">
-                  <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="viewPost.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/viewPost.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="tablet.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/style/tablet.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mobile.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/style/mobile.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="framework.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/style/framework.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="loginForm.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/style/loginForm.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="4" column="27" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/admin/index.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="232">
-                  <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="861">
+              <caret line="154" column="7" lean-forward="false" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminClient.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/AdminClient.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArticleFactory.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/blog/ArticleFactory.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <element signature="n#showSubmissions#0;n#ArticleFactory#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Article.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/blog/Article.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="674">
+              <caret line="59" column="25" lean-forward="true" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IBlogWriter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/blog/IBlogWriter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArticleWriter.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/blog/ArticleWriter.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -212,7 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Validate.php" />
         <option value="$PROJECT_DIR$/admin/index.html" />
         <option value="$PROJECT_DIR$/home/index.html" />
         <option value="$PROJECT_DIR$/Database.php" />
@@ -229,40 +193,41 @@
         <option value="$PROJECT_DIR$/app/Connect.php" />
         <option value="$PROJECT_DIR$/app/LoginManager.php" />
         <option value="$PROJECT_DIR$/app/SessionManager.php" />
-        <option value="$PROJECT_DIR$/admin/AdminClient.php" />
         <option value="$PROJECT_DIR$/app/ILogin.php" />
         <option value="$PROJECT_DIR$/app/LoginClient.php" />
         <option value="$PROJECT_DIR$/app/Bouncer.php" />
         <option value="$PROJECT_DIR$/app/Encryption.php" />
-        <option value="$PROJECT_DIR$/app/Database.php" />
         <option value="$PROJECT_DIR$/style/modals.css" />
         <option value="$PROJECT_DIR$/admin/addPost.php" />
-        <option value="$PROJECT_DIR$/admin/index.php" />
         <option value="$PROJECT_DIR$/app/blog/BlogPost.php" />
         <option value="$PROJECT_DIR$/app/blog/IBlogWriter.php" />
         <option value="$PROJECT_DIR$/app/blog/XMLWriter.php" />
-        <option value="$PROJECT_DIR$/app/blog/ArticleXMLWriter.php" />
         <option value="$PROJECT_DIR$/app/blog/JSONWriter.php" />
         <option value="$PROJECT_DIR$/app/blog/README.md" />
         <option value="$PROJECT_DIR$/app/blog/DisplayArticles.php" />
         <option value="$PROJECT_DIR$/app/blog/ShowBlog.php" />
         <option value="$PROJECT_DIR$/app/blog/GetWriter.php" />
         <option value="$PROJECT_DIR$/app/blog/Article.php" />
-        <option value="$PROJECT_DIR$/admin/ViewBlog.php" />
         <option value="$PROJECT_DIR$/admin/editPost.php" />
         <option value="$PROJECT_DIR$/app/blog/ArticleSubmission.php" />
-        <option value="$PROJECT_DIR$/app/blog/SubmissionWriter.php" />
         <option value="dbtable:/8c1860e5/1cbf627d-4c7e-49b1-b422-ac2904b8a691/eserv.blogMain" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1cbf627d-4c7e-49b1-b422-ac2904b8a691/console.sql" />
         <option value="dbtable:/8c1860e5/1cbf627d-4c7e-49b1-b422-ac2904b8a691/eserv.blogSubmissions" />
-        <option value="$PROJECT_DIR$/app/blog/ArticleFactory.php" />
         <option value="$PROJECT_DIR$/style/tablet.css" />
         <option value="$PROJECT_DIR$/style/mobile.css" />
         <option value="$PROJECT_DIR$/style/framework.css" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/style/loginForm.css" />
-        <option value="$PROJECT_DIR$/app/blog/ArticleWriter.php" />
         <option value="$PROJECT_DIR$/style/normal.css" />
+        <option value="$PROJECT_DIR$/app/Database.php" />
+        <option value="$PROJECT_DIR$/app/blog/ArticleJSONWriter.php" />
+        <option value="$PROJECT_DIR$/app/blog/ArticleWriter.php" />
+        <option value="$PROJECT_DIR$/app/blog/ArticleXMLWriter.php" />
+        <option value="$PROJECT_DIR$/app/blog/SubmissionWriter.php" />
+        <option value="$PROJECT_DIR$/admin/AdminClient.php" />
+        <option value="$PROJECT_DIR$/admin/ViewBlog.php" />
+        <option value="$PROJECT_DIR$/app/blog/ArticleFactory.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/admin/index.php" />
       </list>
     </option>
   </component>
@@ -494,16 +459,16 @@
       <workItem from="1486491042753" duration="37724000" />
       <workItem from="1486619003868" duration="29111000" />
       <workItem from="1486699752991" duration="56613000" />
-      <workItem from="1486844048447" duration="57103000" />
+      <workItem from="1486844048447" duration="65223000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182053000" />
+    <option name="totallyTimeSpent" value="190173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1916" y="-4" width="1928" height="1088" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32940018" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -679,30 +644,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Encryption.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Bouncer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="526">
           <caret line="55" column="55" lean-forward="true" selection-start-line="55" selection-start-column="55" selection-end-line="55" selection-end-column="55" />
           <folding>
             <element signature="e#7#89#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/AdminClient.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-          <folding>
-            <element signature="e#7#89#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -746,14 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/IBlogWriter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/RegisterClient.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -774,22 +713,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/ArticleXMLWriter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/ArticleJSONWriter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -892,36 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
-          <folding>
-            <element signature="e#7#88#0#PHP" expanded="false" />
-            <element signature="n#update#0;n#Database#0;n#!!top" expanded="false" />
-            <element signature="n#deleteWhere#0;n#Database#0;n#!!top" expanded="false" />
-            <element signature="n#search#0;n#Database#0;n#!!top" expanded="false" />
-            <marker date="1486853134779" expanded="true" signature="798:825" ph="SELECT * FRO... ${$table}" />
-            <marker date="1486853134779" expanded="true" signature="1401:1428" ph="SELECT 1 FRO... ${$table}" />
-            <marker date="1486853134779" expanded="true" signature="2611:2629" ph="UPDATE ${$ta... " />
-            <marker date="1486853134779" expanded="true" signature="3158:3191" ph="DELETE ${$de... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ViewBlog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#11#108#0#PHP" expanded="true" />
-            <marker date="1486892105245" expanded="true" signature="1798:1867" ph="SELECT postI... front_blog" />
-            <marker date="1486892105245" expanded="true" signature="1977:2016" ph="..." />
-            <marker date="1486892105245" expanded="true" signature="2151:2215" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/blog/ArticleSubmission.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -964,68 +857,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/Article.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/ArticleFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <marker date="1486922857025" expanded="true" signature="498:622" ph="SELECT postI... blogMain" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/GetWriters.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/SubmissionWriter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style/mobile.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style/loginForm.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="27" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style/framework.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1046,28 +881,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/blog/ArticleWriter.php">
+    <entry file="file://$PROJECT_DIR$/app/Encryption.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        <state relative-caret-position="649">
+          <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/SubmissionWriter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/ArticleXMLWriter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/ArticleJSONWriter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/GetWriters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/style/normal.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="391">
+          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="162" column="1" lean-forward="true" selection-start-line="162" selection-start-column="1" selection-end-line="162" selection-end-column="1" />
+          <folding>
+            <element signature="n#update#0;n#Database#0;n#!!top" expanded="false" />
+            <element signature="n#deleteWhere#0;n#Database#0;n#!!top" expanded="false" />
+            <element signature="n#search#0;n#Database#0;n#!!top" expanded="false" />
+            <marker date="1486956257078" expanded="true" signature="798:825" ph="SELECT * FRO... ${$table}" />
+            <marker date="1486956257078" expanded="true" signature="1401:1428" ph="SELECT 1 FRO... ${$table}" />
+            <marker date="1486956257078" expanded="true" signature="2620:2638" ph="UPDATE ${$ta... " />
+            <marker date="1486956257078" expanded="true" signature="3167:3200" ph="DELETE ${$de... " />
+            <marker date="1486956257078" expanded="true" signature="3909:3991" ph="SELECT postI... ${$whichBlog}" />
+            <marker date="1486956257078" expanded="true" signature="3909:4001" ph="SELECT postI... ${$whichBlog}" />
+            <marker date="1486956257078" expanded="true" signature="3909:4035" ph="SELECT postI... ${$whichBlog}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/ViewBlog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#11#108#0#PHP" expanded="true" />
+            <marker date="1486959761523" expanded="true" signature="1797:1866" ph="SELECT postI... front_blog" />
+            <marker date="1486959761523" expanded="true" signature="1976:2015" ph="..." />
+            <marker date="1486959761523" expanded="true" signature="2150:2214" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/framework.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/loginForm.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="27" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/IBlogWriter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/ArticleWriter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/Article.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/AdminClient.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="44" lean-forward="false" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/blog/ArticleFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="n#showSubmissions#0;n#ArticleFactory#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="59" column="25" lean-forward="true" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        <state relative-caret-position="861">
+          <caret line="154" column="7" lean-forward="false" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="7" />
           <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

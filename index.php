@@ -1,5 +1,4 @@
 <?php
-include_once ('app/Database.php');
 include_once ('app/blog/ArticleFactory.php');
 $articleFactory = new ArticleFactory();
 ?>
@@ -35,12 +34,8 @@ $articleFactory = new ArticleFactory();
             </div>
 
             <div class="container">
-                <!--<label><b>Username</b></label>-->
                 <input type="text" placeholder="Enter Username" name="username" required>
-
-                <!--<label><b>Password</b></label>-->
                 <input type="password" placeholder="Enter Password" name="password" required>
-
                 <button type="submit">Login</button>
                 <input type="checkbox" checked="checked"> Remember me
             </div>

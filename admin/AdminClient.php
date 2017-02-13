@@ -10,13 +10,9 @@
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
 
-// Autoload given function name.
-function includeAll($className)
-{
-    include_once($className . '.php');
-}
-//Register
-spl_autoload_register('includeAll');
+
+include_once ('ViewBlog.php');
+include_once ('../app/blog/ArticleFactory.php');
 
 class AdminClient {
     private $request;
@@ -25,7 +21,7 @@ class AdminClient {
     public function __construct() {
         $this->request = $_POST['request'];
         $this->callClass = new $this->request();
-        echo $this->callClass->returnRequest();
+        echo $this->callClass->adminRequest();
     }
 }
 $worker = new AdminClient();

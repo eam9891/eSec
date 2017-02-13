@@ -68,11 +68,12 @@ class Database extends Connect {
 
     public static function query($query) {
         try {
-            Connect::openConnection()->query($query);
+            $stmt = Connect::openConnection()->query($query);
         }
         catch (PDOException $ex) {
             die("Failed to run query: " . $ex->getMessage());
         }
+
     }
 
     /**
@@ -150,5 +151,13 @@ class Database extends Connect {
         return $stmt->fetchAll();
     }
 
-
+    public static function blog($whichBlog){
+        $query = "
+            SELECT postID, postTitle, postDate, postDescription, postAuthor 
+            FROM $whichBlog 
+            ORDER BY postID DESC
+        ";
+        $stmt = Database::openConnection()->query($query);
+        return $stmt;
+    }
 }

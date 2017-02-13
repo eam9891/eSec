@@ -7,6 +7,7 @@
     include_once ('../app/Database.php');
     include_once ('../app/User.php');
 
+
     $db = new Database();
     $usr = new User();
 
@@ -35,26 +36,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Underground Art School </title>
 
-
+    <link rel="stylesheet" type="text/css" href="../style/framework.css">
+    <link rel="stylesheet" type="text/css" href="../style/loginForm.css">
+    <link rel="stylesheet" type="text/css" href="../style/normal.css">
+    <link rel="stylesheet" type="text/css" href="../style/modals.css">
     <style>
-        #wrapper {
-            margin:auto;
-            width:80%;
-        }
+
         #adminNav {
             padding-left: 0;
         }
 
         #adminNav li {
-            float: left;
+            margin-left: 10px;
+            margin-right: 10px;
             list-style: none;
-            margin-right: 20px;
+
         }
 
-        .header {
-            background-color: #ffffff;
-            text-align: center;
-        }
+
         form input {
             border: 1px solid #999999;
             border-bottom-color: #cccccc;
@@ -94,9 +93,12 @@
         }
 
         iframe {
-            height:calc(100vh - 4px);
-            width:calc(80vw - 4px);
+            /*height:calc(100vh - 4px);
+            width:calc(100vw - 4px);*/
+            width: 100%;
+            height: 100%;
             border: 0;
+            overflow: hidden;
         }
 
 
@@ -112,27 +114,42 @@
     </script>
 </head>
 <body>
-    <div class="header">
-        <img src="../images/banner.jpg">
-    </div>
-    <div id="wrapper">
-        <?php
-            //show message from add / edit page
-            if(isset($_GET['action'])){
-                echo '<h3>Post '.$_GET['action'].'.</h3>';
+<header><img src="../images/banner.jpg"></header>
+<div class="row">
+    <div class="col-3 col-m-3 menu">
 
-            }
-        ?>
+        <div class="imgcontainer">
+            <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
+            <h3><?= $USER->getUsername(); ?></h3>
+            <code><?= $USER->getRole(); ?></code>
+        </div>
+        <div class="container">
+
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+
+        </div>
+
+    </div>
+
+    <div class="col-6 col-m-9 blog">
+        <iframe name="display" align="center">Stuff</iframe>
+    </div>
+
+    <div class="col-3 col-m-12">
         <form name="adminTools" action="AdminClient.php" method="POST" target="display">
             <ul id="adminNav">
-                <li><button type="submit" name="request" value="ViewBlog"> View Blog </button></li>
+                <li><button type="submit" name="request" value="ViewBlog"> Edit Blog </button></li>
+                <li><button type="submit" name="request" value="ArticleFactory"> View Blog </button></li>
                 <li><button type="submit" name="request" value="ViewUsers"> Users </button></li>
                 <li><button type="submit" name="request" value="NewPost"> New Post </button></li>
                 <li><button type="submit" name="request" value="SystemStats"> System Stats </button></li>
 
             </ul>
-        </form><br>
-        <iframe name="display" align="center">Stuff</iframe>
+        </form>
     </div>
+
+</div>
+
 </body>
 </html>
