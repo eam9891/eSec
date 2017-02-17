@@ -7,6 +7,9 @@
  * Time: 11:40 PM
  */
 
+error_reporting(E_ALL | E_STRICT);
+ini_set("display_errors", 1);
+
 class User {
 
     private $userId;
@@ -14,6 +17,8 @@ class User {
     private $email;
     private $password;
     private $role;
+    private $salt;
+    private $active;
 
     //##################### Accessor and Mutator Methods #########################
 
@@ -37,6 +42,14 @@ class User {
         return $this->role;
     }
 
+    public function getSalt() {
+        return $this->salt;
+    }
+
+    public function getActive() {
+        return $this->active;
+    }
+
     public function setUsername($userName) {
         $this->userName = $userName;
     }
@@ -57,16 +70,24 @@ class User {
         $this->role = $role;
     }
 
+    public function setSalt($salt) {
+        $this->salt = $salt;
+    }
+
+    public function setActive($active) {
+        $this->active = $active;
+    }
+
     //##################### End of Accessor and Mutator Methods ##################
 
     /**
      * Returns the User Object provided the id of the user.
      *
-     * @param int $id
+     * @param $username
      * @return User
      * @internal param PDO $db
      */
-    public function getUser($id) {
+    public function getUser($username) {
 
         $db = Database::connect();
         // This query retrieves the user's information from the database using the supplied userID
@@ -75,12 +96,12 @@ class User {
                 *
             FROM users
             WHERE
-                userID = :x
+                username = :x
         ";
 
         // The parameter values
         $query_params = array(
-            ':x' => $id
+            ':x' => $username
         );
 
         // Prepare and execute the query against the database
@@ -103,16 +124,13 @@ class User {
      */
     public function arrToUser($userRow) {
         if (!empty($userRow)) {
-            isset($userRow['userID']) ?
-                $this->setUserId($userRow['userID']) : '';
-            isset($userRow['username']) ?
-                $this->setUsername($userRow['username']) : '';
-            isset($userRow['email']) ?
-                $this->setEmail($userRow['email']) : '';
-            isset($userRow['password']) ?
-                $this->setPassword($userRow['password']) : '';
-            isset($userRow['role']) ?
-                $this->setRole($userRow['role']) : '';
+            isset($userRow['userID'])   ? $this->setUserId($userRow['userID'])     : '';
+            isset($userRow['username']) ? $this->setUsername($userRow['username']) : '';
+            isset($userRow['email'])    ? $this->setEmail($userRow['email'])       : '';
+            isset($userRow['password']) ? $this->setPassword($userRow['password']) : '';
+            isset($userRow['role'])     ? $this->setRole($userRow['role'])         : '';
+            isset($userRow['salt'])     ? $this->setSalt($userRow['salt'])         : '';
+            isset($userRow['active'])   ? $this->setActive($userRow['active'])     : '';
         }
     }
 }

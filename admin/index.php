@@ -10,7 +10,7 @@ include_once ('../app/User.php');
 $db = new Database();
 $usr = new User();
 
-$USER = $usr->getUser($_SESSION['id']);
+$USER = $usr->getUser($_SESSION['user']);
 if ($USER->getRole() !== "admin") {
     header("Location: ../index.php");
     die("Redirecting to: ../index.php");

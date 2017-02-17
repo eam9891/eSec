@@ -1,3 +1,25 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: Ethan
+ * Date: 2/17/2017
+ * Time: 10:56 AM
+ */
+class Home {
+    private $USER;
+    public function __construct(User $obj) {
+        $this->USER = $obj;
+        //if ($this->USER->getRole() !== "user") {
+        //    header("Location: ../index.php");
+        //    die("Redirecting to: ../index.php");
+        //}
+        $this->showUI();
+    }
+    private function showUI() {
+        echo <<<userUI
+
+        
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,17 +36,34 @@
             color: white;
             padding: 15px;
         }
-        .userNav {
-            color:#777; padding: 5px; margin: 0; background: transparent; border: none;
+        .profileButton {
+            border: none;
+            cursor: pointer;
         }
-        .userNav:hover {
-            color:#777;
+        .dropdownImage {
+            margin-top: 10px;
+            margin-right: 10px;
         }
-        .navCaret {
-            padding: 0; margin: 0;
+        .navbar-login
+        {
+            width: 305px;
+            padding: 10px;
+            padding-bottom: 0px;
+        }
 
 
+        .navbar-login-session
+        {
+            padding: 10px;
+            padding-bottom: 0px;
+            padding-top: 0px;
         }
+
+        .icon-size
+        {
+            font-size: 87px;
+        }
+
         @media screen and (max-width: 1000px) {
             .searchForm {
                 width: 200px;
@@ -37,73 +76,82 @@
 </head>
 <body>
 
-<!--
-<nav role="navigation" class="navbar navbar-default">
-    <div class="container">
-
-        <!-- Title
-        <div class="navbar-header pull-left">
-            <a href="" class="navbar-brand">U<small>nderground</small> A<small>rt</small> S<small>chool</small></a>
-        </div>
-
-        <!-- The Collapsing items navbar-left or navbar-right
-        <div class="collapse navbar-collapse navbar-right">
-            <!-- pull-right keeps the drop-down in line
-            <ul class="nav navbar-nav pull-right">
-                <li>
-
-                </li>
-                <li><a href="/news">News</a></li>
-                <li><a href="/Shop">Shop</a></li>
-            </ul>
-
-        </div>
-
-
-
-    </div>
-</nav>-->
-
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
+    <div class="container">
+        <!-- User Profile Dropdown -->
+        <div class="navbar-right pull-right" style="min-width: 130px;">
+            <img src="images/img_avatar2.png" class="img-circle dropdownImage" height="30" width="30" alt="Avatar">
+            <ul class="nav navbar-nav navbar-right pull-right" style="margin: auto;">
+                <li class="dropdown">
+                    <a class="dropdown-toggle profileButton " data-toggle="dropdown" style="padding: 0; margin: 5px auto;">
+                        <span class="pull-right">Ethan Morris</span><br>
+                        <span class=" pull-right">
+                            <small>Administrator</small>
+                            <span class="glyphicon glyphicon-triangle-bottom"></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="glyphicon glyphicon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <p class="text-left"><strong>Salman Khan</strong></p>
+                                        <p class="text-left small">crazytodevelop@@gmail.com</p>
+                                        <p class="text-left">
+                                            <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider navbar-login-session-bg"></li>
+                        <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Messages <span class="badge pull-right"> 42 </span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Site Title/Logo and mobile dropdown button -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">UndergroundArtSchool</a>
+            <a class="navbar-brand" href="#">Underground Art School</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <!-- Collapsible Links and Search -->
+        <div class="collapse navbar-collapse" style="width: 75%;" id="myNavbar">
             <ul class="nav navbar-nav">
 
-                <li><a href="#">Page 1</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Page 1-1</a></li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Page 2</a></li>
                 <li><a href="#">Page 3</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <!-- Search -->
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group input-group">
-                            <input type="text" class="form-control" placeholder="Search..">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </li>
-            </ul>
         </div>
-
-
     </div>
 </nav>
-
-
 
 <div class="container text-center">
     <div class="row">
@@ -224,3 +272,12 @@
 
 </body>
 </html>
+
+        
+        
+        
+        
+        
+userUI;
+    }
+}

@@ -10,7 +10,7 @@
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
 
-include_once ('Bouncer.php');
+include_once('Security.php');
 
 class LoginClient {
     private $login;
@@ -18,7 +18,7 @@ class LoginClient {
 
     public function __construct() {
 
-        $this->login = new Bouncer();
+        $this->login = new Security();
         $this->login->checkLogin($_POST['username'], $_POST['password']);
     }
 }
