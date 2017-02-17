@@ -26,7 +26,7 @@
 
 class ViewBlog {
 
-    public function adminRequest() {
+    public function request() {
         $this->showBlog();
 
     }
@@ -65,6 +65,7 @@ class ViewBlog {
                 color:#000;
             }
         </style>
+        
         <link rel="stylesheet" type="text/css" href="style/normal.css">
         <table>
             <tr>

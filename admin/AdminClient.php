@@ -13,15 +13,32 @@ ini_set("display_errors", 1);
 
 include_once ('ViewBlog.php');
 include_once ('../app/blog/ArticleFactory.php');
+$usr = new User();
+
+$USER = $usr->getUser($_SESSION['id']);
+if ($USER->getRole() !== "admin") {
+    header("Location: ../index.php");
+    die("Redirecting to: ../index.php");
+
+}
 
 class AdminClient {
-    private $request;
+    private $post;
+    private $get;
     private $callClass;
 
     public function __construct() {
-        $this->request = $_POST['request'];
-        $this->callClass = new $this->request();
-        echo $this->callClass->adminRequest();
+        if (!empty($_POST['request'])) {
+            $this->post = $_POST['request'];
+            //unset($_POST['request']);
+            $this->callClass = new $this->post();
+        }
+        if (!empty($_GET['request'])) {
+            $this->get = $_GET['request'];
+            //unset($_GET['adminRequest']);
+            $this->callClass = new $this->get();
+        }
+        $this->callClass->request();
     }
 }
 $worker = new AdminClient();

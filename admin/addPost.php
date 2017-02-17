@@ -75,7 +75,7 @@
             try {
 
                 //insert into database
-                $query = 'INSERT INTO front_blog (postTitle,postDescription,postContent,postDate) VALUES (:postTitle, :postDesc, :postCont, :postDate)';
+                $query = 'INSERT INTO blogMain (postTitle,postDescription,postContent,postDate) VALUES (:postTitle, :postDesc, :postCont, :postDate)';
                 $query_params = array(
                     ':postTitle' => $postTitle,
                     ':postDesc' => $postDesc,

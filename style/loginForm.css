@@ -1,8 +1,9 @@
 /* Bordered form */
-form {
+.loginForm {
     border: 1px solid #60c056;
     border-radius: 10px;
     background-color: white;
+    width: 200px;
 }
 
 /* Full-width inputs */
@@ -16,14 +17,14 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
+.loginButton {
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    width: 80%;
+    margin: auto;
 }
 
 /* Center the avatar image inside this container */

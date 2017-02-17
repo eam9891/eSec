@@ -1,7 +1,13 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 * {
     box-sizing: border-box;
 }
-
+.pull-right {
+    float: right;
+}
 .row::after {
     content: "";
     clear: both;
@@ -36,7 +42,7 @@
     }
 }
 /* For desktop: */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1024px) {
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
     .col-3 {width: 25%;}
@@ -50,7 +56,7 @@
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
     .row {
-        width: 80%;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
     }

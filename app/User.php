@@ -68,9 +68,6 @@ class User {
      */
     public function getUser($id) {
 
-
-
-
         $db = Database::connect();
         // This query retrieves the user's information from the database using the supplied userID
         $query = "

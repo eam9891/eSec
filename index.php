@@ -1,8 +1,4 @@
-<?php
-include_once ('app/blog/ArticleFactory.php');
-$articleFactory = new ArticleFactory();
-?>
-
+<?php include_once ('app/blog/ArticleFactory.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +6,22 @@ $articleFactory = new ArticleFactory();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Underground Art School </title>
-
     <link rel="stylesheet" type="text/css" href="style/framework.css">
     <link rel="stylesheet" type="text/css" href="style/loginForm.css">
     <link rel="stylesheet" type="text/css" href="style/normal.css">
     <link rel="stylesheet" type="text/css" href="style/modals.css">
-
-
     <link rel="stylesheet" href="style/tablet.css" media="only screen and (min-width: 600px) and (max-width: 1024px)">
     <link rel="stylesheet" href="style/mobile.css" media="only screen and (max-width: 600px)">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 </head>
 <body>
-
 <header><img src="images/banner.jpg" align="center"></header>
-
 <div class="row">
 
-    <div class="col-3 col-m-3 menu">
-        <form action="app/LoginClient.php" method="POST">
+    <div class="col-3 col-m-3 ">
+        <form class="loginForm pull-right" action="app/LoginClient.php" method="POST">
             <div class="imgcontainer">
                 <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
                 <h3>Login</h3>
@@ -36,14 +30,14 @@ $articleFactory = new ArticleFactory();
             <div class="container">
                 <input type="text" placeholder="Enter Username" name="username" required>
                 <input type="password" placeholder="Enter Password" name="password" required>
-                <button type="submit">Login</button>
+                <button class="loginButton" type="submit">Login</button><br>
                 <input type="checkbox" checked="checked"> Remember me
             </div>
 
             <div class="container" style="background-color:#f1f1f1">
                 <span class="psw">Forgot <a href="#">password?</a></span>
                 <button onclick="document.getElementById('registerID').style.display='block'"
-                        class="button"
+                        class="loginButton"
                         style="width:auto;"
                 >
                     Register now for free!
@@ -53,7 +47,12 @@ $articleFactory = new ArticleFactory();
     </div>
 
     <div class="col-6 col-m-9 blog">
-        <?php $articleFactory->showBlog(); ?>
+        <div id="blog">
+            <?php
+                $blog = new ArticleFactory();
+                $blog->request("mainBlog");
+            ?>
+        </div>
     </div>
 
     <div class="col-3 col-m-12">
@@ -122,6 +121,5 @@ $articleFactory = new ArticleFactory();
         }
     }
 </script>
-
 </body>
 </html>

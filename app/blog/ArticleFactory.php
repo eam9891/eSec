@@ -9,25 +9,22 @@
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
 
-
-
 include_once ('Article.php');
 include_once ('ArticleWriter.php');
+include_once $_SERVER['DOCUMENT_ROOT'].'/undergroundartschool/app/Database.php';
+
 
 class ArticleFactory {
+    private $db;
 
-    public function __construct() {
-
+    public function request($params) {
+        $this->$params();
     }
-    public function adminRequest() {
-        $this->showBlog();
-    }
-    public function showBlog() {
 
-        $db = new Database();
-        $blog = $db->blog("blogMain");
+    public function mainBlog() {
+        $this->db = new Database();
+        $blog = $this->db->blog("blogMain");
         while ($row = $blog->fetch()) {
-
             $article = new Article(
                 $row['postID'],
                 $row['postTitle'],
@@ -35,32 +32,13 @@ class ArticleFactory {
                 $row['postDescription'],
                 $row['postAuthor']
             );
-
-            /*try {
-                $writer = GetWriters::getWriter();
-            }
-            catch (Exception $e) {
-                $writer = new ArticleWriter();
-            }*/
             $writer = new ArticleWriter();
             echo $article->write($writer);
         }
     }
-    public function showSubmissions() {
-        $db = new Database();
-        $blog = $db->blog("blogSubmissions");
-        while ($row = $blog->fetch()) {
 
-            $article = new Article(
-                $row['postID'],
-                $row['postTitle'],
-                $row['postDate'],
-                $row['postDescription'],
-                $row['postAuthor']
-            );
+    public function viewPost() {
 
-            $writer = new ArticleWriter();
-            echo $article->write($writer);
-        }
     }
 }
+

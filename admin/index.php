@@ -1,30 +1,29 @@
 <?php
-    session_start();
+session_start();
 
-    error_reporting(E_ALL | E_STRICT);
-    ini_set("display_errors", 1);
+error_reporting(E_ALL | E_STRICT);
+ini_set("display_errors", 1);
 
-    include_once ('../app/Database.php');
-    include_once ('../app/User.php');
+include_once ('../app/Database.php');
+include_once ('../app/User.php');
 
+$db = new Database();
+$usr = new User();
 
-    $db = new Database();
-    $usr = new User();
+$USER = $usr->getUser($_SESSION['id']);
+if ($USER->getRole() !== "admin") {
+    header("Location: ../index.php");
+    die("Redirecting to: ../index.php");
+}
 
-    $USER = $usr->getUser($_SESSION['id']);
-    if ($USER->getRole() !== "admin") {
-        header("Location: ../index.php");
-        die("Redirecting to: ../index.php");
-    }
-
-    //show message from add / edit page
-    if(isset($_GET['delpost'])){
-        //DELETE FROM front_blog WHERE postID = :postID
-        //$stmt->execute(array(':postID' => $_GET['delpost']));
-        $db->deleteWhere("front_blog", "postID = ?", $_GET['delpost']);
-        header('Location: index.php?action=deleted');
-        exit;
-    }
+//show message from add / edit page
+if(isset($_GET['delpost'])){
+    //DELETE FROM front_blog WHERE postID = :postID
+    //$stmt->execute(array(':postID' => $_GET['delpost']));
+    $db->deleteWhere("front_blog", "postID = ?", $_GET['delpost']);
+    header('Location: index.php?action=deleted');
+    exit;
+}
 
 ?>
 
@@ -36,120 +35,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Underground Art School </title>
 
-    <link rel="stylesheet" type="text/css" href="../style/framework.css">
-    <link rel="stylesheet" type="text/css" href="../style/loginForm.css">
-    <link rel="stylesheet" type="text/css" href="../style/normal.css">
-    <link rel="stylesheet" type="text/css" href="../style/modals.css">
-    <style>
 
-        #adminNav {
-            padding-left: 0;
-        }
+    <link rel="stylesheet" type="text/css" href="adminTools.css">
+    <link rel="stylesheet" type="text/css" href="../style/userPanel.css">
 
-        #adminNav li {
-            margin-left: 10px;
-            margin-right: 10px;
-            list-style: none;
-
-        }
-
-
-        form input {
-            border: 1px solid #999999;
-            border-bottom-color: #cccccc;
-            border-right-color: #cccccc;
-            padding: 5px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.0em;
-            margin: 2px;
-        }
-
-        table {
-            width:98%;
-            text-align:left;
-            border:1px solid #DDDDDD;
-            font-size:12px;
-            color:#000;
-            background:#fff;
-            margin-bottom:10px;
-        }
-        table th {
-            background-color:#E5E5E5;
-            border:1px solid #BBBBBB;
-            padding:3px 6px;
-            font-weight:normal;
-            color:#000;
-        }
-        table tr td {
-            border:1px solid #DDDDDD;
-            padding:5px 6px;
-        }
-        table tr.alt td {
-            background-color:#E2E2E2;
-        }
-        table tr:hover {
-            background-color:#F0F0F0;
-            color:#000;
-        }
-
-        iframe {
-            /*height:calc(100vh - 4px);
-            width:calc(100vw - 4px);*/
-            width: 100%;
-            height: 100%;
-            border: 0;
-            overflow: hidden;
-        }
-
-
-    </style>
-    <script language="JavaScript" type="text/javascript">
-        function delpost(id, title)
-        {
-            if (confirm("Are you sure you want to delete '" + title + "'"))
-            {
-                window.location.href = 'index.php?delpost=' + id;
-            }
-        }
-    </script>
+    <script src="../jquery-3.1.1.min.js"></script>
 </head>
 <body>
-<header><img src="../images/banner.jpg"></header>
-<div class="row">
-    <div class="col-3 col-m-3 menu">
-
+    <header><img src="../images/uas.png" class="header"></header>
+    <div class="userPanel">
         <div class="imgcontainer">
             <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
             <h3><?= $USER->getUsername(); ?></h3>
             <code><?= $USER->getRole(); ?></code>
         </div>
-        <div class="container">
 
-        </div>
-        <div class="container" style="background-color:#f1f1f1">
 
-        </div>
-
-    </div>
-
-    <div class="col-6 col-m-9 blog">
-        <iframe name="display" align="center">Stuff</iframe>
-    </div>
-
-    <div class="col-3 col-m-12">
-        <form name="adminTools" action="AdminClient.php" method="POST" target="display">
+        <form id="adminTools" name="adminTools">
+            <div class="menuTitle">Blog</div>
             <ul id="adminNav">
-                <li><button type="submit" name="request" value="ViewBlog"> Edit Blog </button></li>
-                <li><button type="submit" name="request" value="ArticleFactory"> View Blog </button></li>
-                <li><button type="submit" name="request" value="ViewUsers"> Users </button></li>
-                <li><button type="submit" name="request" value="NewPost"> New Post </button></li>
-                <li><button type="submit" name="request" value="SystemStats"> System Stats </button></li>
+                <li><button id="editBlog" value="ViewBlog" class="adminButton"> Edit Blog </button></li>
+                <li><button id="showBlog" value="ArticleFactory" class="adminButton"> Show Blog </button></li>
+                <li><button id="newPost" value="NewPost" class="adminButton"> New Post </button></li>
 
             </ul>
+
+            <div class="menuTitle">Users</div>
+            <ul id="adminNav">
+                <li><button id="adminButton" value="ViewUsers" class="adminButton"> Users </button></li>
+                <li><button id="adminButton" value="SystemStats" class="adminButton"> Artist Contributions </button></li>
+            </ul>
+
+            <div class="menuTitle">System</div>
+            <ul id="adminNav">
+                <li><button id="adminButton" value="SystemStats" class="adminButton"> System Stats </button></li>
+            </ul>
         </form>
+
+    </div>
+    <!-- top tiles -->
+
+    <!-- Server Uptime
+    <div class="stats">
+            <span class="uptime_percent green pull-right">
+                <i class="fa fa-sort-asc"></i> 99.99%
+            </span>
+        <span class="count_top">
+                <i class="fa fa-clock-o"></i> Server Uptime
+            </span>
+        <div class="count" >
+            <div id="refresh" class="green">
+                <?php
+
+                //$ut = $ServerInfo->Uptime();
+                //echo "$ut[days]:$ut[hours]:$ut[mins]:$ut[secs] ";
+                ?>
+            </div>
+        </div>
+        <span class="count_bottom">
+                Days : Hours : Minutes : Seconds
+            </span>
+    </div>-->
+
+    <!-- Total Users
+    <div class="stats">
+        <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+        <div class="count green">
+            <?php
+            //include("numUsers.php");
+            //echo $numberOfUsers;
+            ?>
+        </div>
+        <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+    </div>-->
+
+    <!-- System Load
+    <div class="stats">
+        <span class="count_top"><i class="fa fa-user"></i> System Load</span>
+        <div class="count green">
+            <div id="refreshLoad">
+
+            </div>
+        </div>
+        <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+    </div>-->
+
+    <!-- Network Activity
+    <div class="stats">
+        <form class="pull-right">
+            <label class="select">
+                <select name="Network" onchange="networkUtility(this.value)">
+                    <option value="1" class="styledOption">Upload</option>
+                    <option value="2">Download</option>
+                    <option value="3" selected>Total</option>
+                </select>
+            </label>
+        </form>
+        <span class="count_top">
+                <i class="fa fa-user"></i>
+                Network
+            </span>
+        <div class="count green">
+            <div id="txtHint"><b></b></div>
+        </div>
+        <span class="count_bottom">
+                <i class="green"><i class="fa fa-sort-asc"></i> 34% </i>
+                From last Week
+            </span>
+    </div>-->
+
+
+    <!-- /top tiles -->
+    <div id="blog"></div>
+    <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
+        <img src='../images/loader.gif' width="64" height="64" /><br>Loading..
     </div>
 
-</div>
 
+
+
+
+<script>
+    function loader() {
+        $(document).ajaxStart(function(){
+            $("#wait").css("display", "block");
+        });
+        $(document).ajaxComplete(function(){
+            $("#wait").css("display", "none");
+        });
+    }
+
+    $(function(){
+        $('#showBlog').on('click' , function(){
+            loader();
+            var dataString = 'request='+ $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "AdminClient.php",
+                data: dataString,
+                cache: false,
+                success : function(data) {
+                    $("#blog").html(data);
+                }
+            });
+            return false;
+        });
+
+        $('#editBlog').on('click' , function(){
+            loader();
+            var dataString = 'request='+ $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "AdminClient.php",
+                data: dataString,
+                cache: false,
+                success : function(data) {
+                    $("#blog").html(data);
+                }
+            });
+            return false;
+        });
+    });
+
+
+    // Network Utility
+    function networkUtility(str) {
+        var xmlhttp;
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+
+        xmlhttp.open("GET", "SystemInfo.php?q=" + str, true);
+        xmlhttp.send();
+
+    }
+    // Load the default network selection (Total download and upload bytes)
+    window.onload = networkUtility(3);
+
+</script>
 </body>
 </html>
