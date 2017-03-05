@@ -25,7 +25,21 @@ namespace framework\blog {
 
             echo <<<newPost
 
-                
+                <script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=q51gr2pl1firxabxen6o39fc0gu7vd7m6hwzim9v9pqh68a7"></script>
+                <script>
+                    tinymce.init({
+                        selector: "textarea",
+                        plugins: [
+                            "advlist autolink lists link image charmap print preview anchor",
+                            "searchreplace visualblocks code fullscreen",
+                            "insertdatetime media table contextmenu paste"
+                        ],
+                        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                    });
+                    
+                    
+                    
+                </script>
                 
                 
                 <h2>Add Post</h2>

@@ -13,7 +13,7 @@ namespace admin {
     use framework\User;
 
     class Footer extends IUserInterface {
-        public function __construct(Authenticate $auth, User &$USER) {
+        public function __construct(Authenticate &$auth, User &$USER) {
             self::$htmlString = <<<footerUI
 
             <script>
