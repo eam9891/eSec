@@ -6,7 +6,17 @@
  * Time: 1:04 AM
  */
 
-require_once('../app/Database.php');
+namespace admin;
+
+error_reporting(E_ALL | E_STRICT);
+ini_set("display_errors", 1);
+
+spl_autoload_register(function($class) {
+    include '/var/www/html/undergroundartschool/' . str_replace('\\', '/', $class) . '.php';
+});
+
+use framework\database\Database;
+
 $worker = new Database();
 $db = $worker->connect();
 
@@ -18,7 +28,7 @@ $db = $worker->connect();
 <head>
     <meta charset="utf-8">
     <title>Admin - Edit Post</title>
-    <link rel="stylesheet" href="../style/normal.css">
+    <link rel="stylesheet" href="../public/style/normal.css">
     <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script>
         tinymce.init({

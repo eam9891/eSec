@@ -1,125 +1,197 @@
-<?php include_once ('app/blog/ArticleFactory.php'); ?>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Ethan
+ * Date: 2/16/2017
+ * Time: 5:55 PM
+ */
+
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+spl_autoload_register(function($class) {
+    include __DIR__ . DIRECTORY_SEPARATOR . str_replace('\\', '/', $class) . '.php';
+});
+
+use framework\blog\ArticleFactory;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Underground Art School </title>
-    <link rel="stylesheet" type="text/css" href="style/framework.css">
-    <link rel="stylesheet" type="text/css" href="style/loginForm.css">
-    <link rel="stylesheet" type="text/css" href="style/normal.css">
-    <link rel="stylesheet" type="text/css" href="style/modals.css">
-    <link rel="stylesheet" href="style/tablet.css" media="only screen and (min-width: 600px) and (max-width: 1024px)">
-    <link rel="stylesheet" href="style/mobile.css" media="only screen and (max-width: 600px)">
-
+    <title>Underground Art School</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <style>
+        /* make sidebar nav vertical */
+        @media (min-width: 768px) {
+            .sidebar-nav .navbar .navbar-collapse {
+                padding: 0;
+                max-height: none;
+            }
+            .sidebar-nav .navbar ul {
+                float: none;
+            }
+            .sidebar-nav .navbar ul:not {
+                display: block;
+            }
+            .sidebar-nav .navbar li {
+                float: none;
+                display: block;
+            }
+            .sidebar-nav .navbar li a {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-<header><img src="images/banner.jpg" align="center"></header>
-<div class="row">
 
-    <div class="col-3 col-m-3 ">
-        <form class="loginForm pull-right" action="app/LoginClient.php" method="POST">
-            <div class="imgcontainer">
-                <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
-                <h3>Login</h3>
-            </div>
-
-            <div class="container">
-                <input type="text" placeholder="Enter Username" name="username" required>
-                <input type="password" placeholder="Enter Password" name="password" required>
-                <button class="loginButton" type="submit">Login</button><br>
-                <input type="checkbox" checked="checked"> Remember me
-            </div>
-
-            <div class="container" style="background-color:#f1f1f1">
-                <span class="psw">Forgot <a href="#">password?</a></span>
-                <button onclick="document.getElementById('registerID').style.display='block'"
-                        class="loginButton"
-                        style="width:auto;"
-                >
-                    Register now for free!
-                </button>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-6 col-m-9 blog">
-        <div id="blog">
-            <?php
-                $blog = new ArticleFactory();
-                $blog->request("mainBlog");
-            ?>
-        </div>
-    </div>
-
-    <div class="col-3 col-m-12">
-        <div class="nav">
-            <a href="about.html"><img src="images/about.jpg"></a>
-            <a href="read.html"><img src="images/read.jpg"></a>
-            <a href="watch.html"><img src="images/watch.jpg"></a>
-            <a href="theTeam.html"><img src="images/theTeam.jpg"></a>
-            <a href="contact.html"><img src="images/contact.jpg"></a>
-            <a href="homework.html"><img src="images/homework.jpg"></a>
-            <a href="patrons.html"><img src="images/patrons.jpg"></a>
-        </div>
-    </div>
-
-</div>
-
-<div class="footer">
-    ©Underground Art School™ Posted images are property +
-    copyright of their respective creators and/or owners. <br>
-    Respect for art=Friendship yo!
-</div>
-
-<!-- Register Form Modal -->
-<div id="registerID" class="modal">
-    <form class="modal-content animate" action="app/RegisterClient.php" method="POST">
-        <div class="imgcontainer">
-            <span onclick="document.getElementById('registerID').style.display='none'"
-                  class="close"
-                  title="Close Modal">&times;
-            </span>
-            <h1>Registration</h1>
-            <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
-        </div>
-
-        <div class="container">
-            <label><b>Enter A Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-
-            <label><b>Enter A Valid Email Address</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required>
-
-            <label><b>Enter A Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit">Login</button>
-        </div>
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button"
-                    onclick="document.getElementById('registerID').style.display='none'"
-                    class="cancelbtn">
-                Cancel
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNav, #sideNav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="http://192.168.0.132/undergroundartschool/">Underground Art School</a>
         </div>
-    </form>
+        <div class="collapse navbar-collapse" id="topNav">
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Trigger the register modal with a button-->
+                <li><a href="" data-toggle="modal" data-target="#registerModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <!-- Trigger the login modal with a button-->
+                <li><a href="" data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="col-sm-3">
+        <div class="collapse navbar-collapse" id="sideNav">
+            <div class="list-group">
+                <a href="#" class="list-group-item">Forum</a>
+                <a href="#" class="list-group-item">Shop</a>
+                <a href="#" class="list-group-item">About Us</a>
+                <a href="#" class="list-group-item">Contact Us</a>
+                <a href="#" class="list-group-item">Contributors</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="panel-group">
+            <?php $blog = new ArticleFactory("blogMain", "getBlog"); ?>
+        </div>
+    </div>
+
+    <div class="col-sm-3 hidden-xs">
+        <div class="sidebar-nav">
+            <div class="navbar navbar-default" role="navigation">
+
+                <div class="list-group">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Menu Item 1</a></li>
+                        <li><a href="#">Menu Item 2</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Nav header</li>
+                                <li><a href="#">Separated link</a></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Menu Item 4</a></li>
+                        <li><a href="#">Reviews <span class="badge">1,118</span></a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registration</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="framework/login/RegisterClient.php" method="POST">
+                        <div class="form-group">
+                            <label for="email">Enter Your Email Address:</label>
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Enter A Username:</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Enter A Password:</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="framework/login/LoginClient.php" method="POST">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox"> Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
-<!-- Register Modal Script -->
-<script>
-    // Get the modal
-    var modal = document.getElementById('registerID');
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 </body>
 </html>
+

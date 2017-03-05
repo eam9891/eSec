@@ -10,8 +10,8 @@
     error_reporting(E_ALL | E_STRICT);
     ini_set("display_errors", 1);
 
-    include_once ('../app/Database.php');
-    include_once ('../app/User.php');
+    include_once('../framework/Database.php');
+    include_once('../framework/User.php');
 
     $db = new Database();
     $usr = new User();
@@ -28,7 +28,7 @@
 <head>
     <meta charset="utf-8">
     <title>Admin - Add Post</title>
-    <link rel="stylesheet" href="../style/normal.css">
+    <link rel="stylesheet" href="../public/style/normal.css">
     <script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=q51gr2pl1firxabxen6o39fc0gu7vd7m6hwzim9v9pqh68a7"></script>
     <script>
         tinymce.init({

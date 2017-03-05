@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="DevBox">
+  <component name="PublishConfigData" autoUpload="Always" serverName="dev">
     <serverData>
       <paths name="Cloud Server">
         <serverdata>
@@ -9,10 +9,10 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="DevBox">
+      <paths name="Copy of project-level server 'mvc2'">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
@@ -23,7 +23,21 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="dev">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="homework">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="mvc">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
