@@ -95,51 +95,11 @@ namespace admin {
                         return false;
                     });
                     
-                    $('#submitPost').on('click' , function(){
-                        loader();
-                        var dataString = 'submit='+ $(this).val();
-                        $.ajax({
-                            type: "POST",
-                            url: "SubmitPost.php",
-                            data: dataString,
-                            cache: false,
-                            success : function(data) {
-                                $("#blog").html(data);
-                            }
-                        });
-                        return false;
-                    });
+                    
+                  
                 })
                 
-                
-            
-              
-            
-            
-                // Network Utility
-                function networkUtility(str) {
-                    var xmlhttp;
-            
-                    if (window.XMLHttpRequest) {
-                        // code for IE7+, Firefox, Chrome, Opera, Safari
-                        xmlhttp = new XMLHttpRequest();
-                    } else {
-                        // code for IE6, IE5
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange = function () {
-            
-                        if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("txtHint").innerHTML = this.responseText;
-                        }
-                    };
-            
-                    xmlhttp.open("GET", "SystemInfo.php?q=" + str, true);
-                    xmlhttp.send();
-            
-                }
-                // Load the default network selection (Total download and upload bytes)
-                window.onload = networkUtility(3);
+        
         
         </script>
         </body>

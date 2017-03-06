@@ -6,43 +6,54 @@
  * Time: 7:03 PM
  */
 
-namespace app\admin;
+namespace admin {
 
-use framework\database\Database;
-use framework\libs\Authenticate;
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 1);
+
+    spl_autoload_register(function($class) {
+        include $_SERVER['DOCUMENT_ROOT'] . "/undergroundartschool/" . str_replace('\\', '/', $class) . '.php';
+
+    });
+
+    use framework\database\Database;
+    use framework\libs\Authenticate;
+    use framework\User;
 
 
-class SubmitPost {
-    private $postTitle, $postDesc, $postCont, $postAuthor, $role;
+    class SubmitPost {
+        private $postTitle, $postDesc, $postCont, $postAuthor;
 
-    public function __construct() {
+        public function __construct() {
 
-        $auth = new Authenticate("admin");
+            $auth = new Authenticate("contributor");
 
-        //if form has been submitted process it
-        if(isset($_POST['submit'])){
 
-            if(isset($_POST['user'])) {
-                $this->postAuthor = $_POST['user'];
-            }
-            if(isset($_POST['role'])) {
-                $this->role = $_POST['role'];
+            if(isset($_POST['postAuthor'])) {
+                $this->postAuthor = $_POST['postAuthor'];
+                unset($_POST['postAuthor']);
+            } else {
+                $error[] = 'Error: No author for post.';
             }
             if(isset($_POST['postTitle'])) {
                 $this->postTitle = $_POST['postTitle'];
+                unset($_POST['postTitle']);
             } else {
                 $error[] = 'Please enter the title.';
             }
             if(isset($_POST['postDesc'])) {
                 $this->postDesc = $_POST['postDesc'];
+                unset($_POST['postDesc']);
             } else {
                 $error[] = 'Please enter the description.';
             }
             if(isset($_POST['postCont'])) {
                 $this->postCont = $_POST['postCont'];
+                unset($_POST['postCont']);
             } else {
                 $error[] = 'Please enter the content.';
             }
+
 
 
             if(!isset($error)){
@@ -51,27 +62,29 @@ class SubmitPost {
                     $db = new Database();
                     //insert into database
                     $query = '
-                            INSERT INTO blogSubmissions (postTitle,postDescription,postContent,postDate,postAuthor) 
-                            VALUES (:postTitle, :postDesc, :postCont, :postDate, :postAuthor)
+                            INSERT INTO blogSubmissions (postTitle,postDescription,postContent,postAuthor) 
+                            VALUES (:postTitle, :postDesc, :postCont, :postAuthor)
                         ';
                     $query_params = array(
                         ':postTitle' => $this->postTitle,
                         ':postDesc' => $this->postDesc,
                         ':postCont' => $this->postCont,
-                        ':postDate' => date('Y-m-d H:i:s'),
                         ':postAuthor' => $this->postAuthor
                     );
                     $db->insert($query, $query_params);
 
                     //redirect to index page
-                    header('Location: 192.168.0.132/undergroundartschool/'.$this->role.'/');
-                    exit;
+                    //header('Location: 192.168.0.132/undergroundartschool/'.$this->role.'/');
+                    header("Location: index.php");
 
                 } catch(\PDOException $e) {
                     echo $e->getMessage();
                 }
 
+            } else {
+                echo $error;
             }
         }
     }
+    $worker = new SubmitPost();
 }

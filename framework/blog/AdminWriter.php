@@ -22,15 +22,35 @@ namespace framework\blog {
 
             $date = date('M jS Y', strtotime($obj->date));
             $time = date('h:i A', strtotime($obj->date));
+
+            if ($obj->published) {
+                $publishButton = <<<publishButton
+
+                    <button type='button' class='btn btn-default btn-info publishPost' value='$obj->id'> Publish </button>
+                
+publishButton;
+            } else {
+                $publishButton = <<<revertButtons
+
+                    <button type='button' class='btn btn-default disabled'> Published </button>
+                    <button type='button' class='btn btn-info revertPublished' value='$obj->id'> Revert </button>
+                
+revertButtons;
+            }
+
+
             echo <<<blogMainUI
         
                 <tr>
                     <td>$obj->title</td>
-                    <td>$obj->date</td>
+                    <td>$date $time</td>
+                    <td>$obj->author</td>
                     <td>
-                        <button type="btn btn-warning" id="editPost"> Edit </button>
-                        <a href="editPost.php?id=$obj->id">Edit</a>&nbsp
-                        <a href="javascript:delpost($obj->id,$obj->title)"> Delete </a>
+                        
+                        <button value="$obj->id" class="btn btn-default btn-warning editPost"> Edit </button>
+                        <button value="$obj->id" class="btn btn-default btn-danger deletePost"> Delete </button>
+                        <input type="hidden" class="postPublished" name="postPublished" value="$obj->published">
+                        $publishButton
                     </td>
                 </tr>
              

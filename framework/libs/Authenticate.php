@@ -66,15 +66,19 @@ class Authenticate {
                     break;
                 }
 
-            case "moderator":
-
-
-
             case "contributor":
+                if ($this->dbRole == "user" || $this->dbRole == "contributor" || $this->dbRole == "admin") {
+                    $this->returnAuthStatus = true;
+                    break;
+                } else {
+                    header("Location: ../");
+                    die("Redirecting to: ../");
+                    break;
 
+                }
 
             case "user":
-                if ($this->dbRole = "user" || $this->dbRole = "admin") {
+                if ($this->dbRole == "user" || $this->dbRole == "admin") {
                     $this->returnAuthStatus = true;
                     break;
                 } else {

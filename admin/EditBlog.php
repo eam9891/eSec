@@ -29,12 +29,35 @@ class EditBlog {
             $blogPosts = $db->query($query);
             echo <<<'editBlogUI'
         
+            <script>
+                $('.deletePost').on('click' , function(){
+                      
+                        var dataString = { 
+                            'postID'        : $(this).val(),
+                            'postPublished' : $('.postPublished').val()
+                        };
+                        
+                        loader();
+                        $.ajax({
+                            type: "POST",
+                            url: "DeletePost.php",
+                            data: dataString,
+                            cache: false,
+                            success : function(data) {
+                                $("#blog").html(data);
+                            }
+                        });
+                        return false;
+                    });
+            </script>
+        
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Date</th>
+                            <th>Author</th>
                             <th>Action</th>
                         </tr>
                     </thead>

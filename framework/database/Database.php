@@ -27,6 +27,17 @@ namespace framework\database {
             session_destroy();
         }
 
+        public static function select(string $query, array $query_params) {
+            try {
+                $stmt = Connect::openConnection()->prepare($query);
+                $stmt->execute($query_params);
+            }
+            catch (PDOException $ex) {
+                die("Failed to run query: " . $ex->getMessage());
+            }
+            return $stmt->fetch();
+
+        }
 
         /**
          * SELECT * FROM $table WHERE $where
@@ -119,14 +130,17 @@ namespace framework\database {
 
 
         /**
-         * Deletes ... from ... where ...
+         * Deletes from ... where ...
+         *
          * @param string $table
-         * @param string $delete
-         * @param array $query_params
+         * @param string $where
+         * @param array  $query_params
+         *
+         * @internal param string $delete
          */
-        public static function deleteWhere(string $table, string $delete, array $query_params)
+        public static function deleteWhere(string $table, string $where, array $query_params)
         {
-            $query = "DELETE $delete FROM $table WHERE $query_params";
+            $query = "DELETE FROM $table WHERE $where";
             try
             {
                 $stmt = Connect::openConnection()->prepare($query);
