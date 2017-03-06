@@ -32,23 +32,24 @@ class EditBlog {
             <script>
                 $('.deletePost').on('click' , function(){
                       
-                        var dataString = { 
-                            'postID'        : $(this).val(),
-                            'postPublished' : $('.postPublished').val()
-                        };
-                        
-                        loader();
-                        $.ajax({
-                            type: "POST",
-                            url: "DeletePost.php",
-                            data: dataString,
-                            cache: false,
-                            success : function(data) {
-                                $("#blog").html(data);
-                            }
-                        });
-                        return false;
+                    var dataString = { 
+                        'request'       : 'DeletePost',
+                        'postID'        : $(this).val(),
+                        'postPublished' : $('.postPublished').val()
+                    };
+                    
+                    loader();
+                    $.ajax({
+                        type: "POST",
+                        url: "AdminClient.php",
+                        data: dataString,
+                        cache: false,
+                        success : function(data) {
+                            $("#blog").html(data);
+                        }
                     });
+                    return false;
+                });
             </script>
         
             <div class="table-responsive">
