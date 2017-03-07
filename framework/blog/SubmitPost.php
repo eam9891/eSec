@@ -21,19 +21,21 @@ namespace framework\blog {
 
 
     class SubmitPost {
-        private $postTitle, $postDesc, $postCont, $postAuthor;
+        private $postTitle, $postCont, $postAuthor;
 
         public function __construct() {
 
             $auth = new Authenticate("contributor");
 
-
+            // Make sure we have an author!
             if(isset($_POST['postAuthor'])) {
                 $this->postAuthor = $_POST['postAuthor'];
                 unset($_POST['postAuthor']);
             } else {
                 $error[] = 'Error: No author for post.';
             }
+
+            // Make sure we have a title
             if(isset($_POST['postTitle'])) {
                 $this->postTitle = $_POST['postTitle'];
                 unset($_POST['postTitle']);
@@ -41,13 +43,13 @@ namespace framework\blog {
                 $error[] = 'Please enter the title.';
             }
 
+            // Make sure we have content
             if(isset($_POST['postCont'])) {
                 $this->postCont = $_POST['postCont'];
                 unset($_POST['postCont']);
             } else {
                 $error[] = 'Please enter the content.';
             }
-
 
 
             if(!isset($error)){

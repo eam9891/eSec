@@ -10,12 +10,11 @@
 namespace framework\blog;
 
 class Article {
-    public $id, $title, $date, $description, $author, $content, $published;
-    public function __construct($id, $title, $date, $description, $author, $content, $published) {
+    public $id, $title, $date, $author, $content, $published;
+    public function __construct($id, $title, $date, $author, $content, $published) {
         $this->id = $id;
         $this->title = $title;
         $this->date = $date;
-        $this->description = $description;
         $this->author = $author;
         $this->content = $content;
         $this->published = $published;

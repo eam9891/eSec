@@ -17,65 +17,53 @@ namespace admin {
 
     });
 
-    use framework\blog\ArticleFactory;
-    use framework\blog\DeletePost;
-    use framework\blog\EditBlog;
-    use framework\blog\NewPost;
-    use framework\blog\SubmitPost;
+
     use framework\libs\Authenticate;
-    use framework\User;
+
 
     class AdminClient {
-        private $post;
-        private $get;
-        private $callClass;
+
+        private $class;
+        private $method;
+        private $params;
         private $auth;
-        private $USER;
+
 
 
         public function __construct() {
 
             $this->auth = new Authenticate("admin");
-            $this->USER = new User();
-            $this->USER = $this->USER->getUser($_SESSION['username']);
+
+            $isEverythingSet = false;
 
             if (!empty($_POST['request'])) {
-                $this->post = $_POST['request'];
+                $this->class = $_POST['request'];
                 unset($_POST['request']);
-
-                switch ($this->post) {
-                    case "EditBlog" :
-                        $this->callClass = new EditBlog();
-                        echo $this->callClass->request($this->auth, "postID", "DESC");
-                        break;
-                    case "ArticleFactory" :
-                        $this->callClass = new ArticleFactory("blogMain", "getBlog");
-                        break;
-                    case "NewPost" :
-                        $this->callClass = new NewPost($this->USER);
-                        break;
-                    case "SubmitPost" :
-                        $this->callClass = new SubmitPost();
-                        break;
-                    case "DeletePost" :
-                        $this->callClass = new DeletePost();
-                        break;
-                }
-
-
+                $isEverythingSet = true;
             }
 
-            if (!empty($_GET['request'])) {
-                $this->get = $_GET['request'];
-                unset($_GET['adminRequest']);
-                $this->callClass = new $this->get();
+            if (!empty($_POST['method'])) {
+                $this->method = $_POST['method'];
+                unset($_POST['method']);
+                $isEverythingSet = true;
             }
 
+            if (!empty($_POST['params'])) {
+                $this->params = $_POST['params'];
+                unset($_POST['params']);
+                $isEverythingSet = true;
+            }
 
+            if ($isEverythingSet) {
 
+                $this->class = str_replace('_', '\\', $this->class);
+                $class = new $this->class();
+                $method = $this->method;
+                $class->$method($this->params);
+
+            }
         }
     }
-
 
     $worker = new AdminClient();
 }

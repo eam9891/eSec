@@ -8,14 +8,60 @@
 
 namespace admin {
 
+    use framework\libs\AjaxHandler;
     use framework\libs\Authenticate;
     use home\IUserInterface;
     use framework\User;
 
     class Footer extends IUserInterface {
-        public function __construct(Authenticate &$auth, User &$USER) {
-            self::$htmlString = <<<footerUI
 
+
+        public function __construct(Authenticate &$auth, User &$USER) {
+
+            $editBlog = "framework_blog_EditBlog";
+            $showBlog = "framework_blog_ArticleFactory";
+            $newPost = "framework_blog_NewPost";
+            $ajax = new AjaxHandler();
+
+            $showBlogParams = array(
+                "request" => $showBlog,
+                "method" => "getBlog",
+                "params" => array(
+                    "whichBlog" => "blogMain"
+                )
+
+            );
+            $ShowBlogButton = $ajax->ajaxButton("AdminClient.php", "showBlog", (array) $showBlogParams);
+
+
+
+            $userID = $USER->getUserId();
+            $username = $USER->getUsername();
+            $newPostParams = array(
+                "request" => $newPost,
+                "method" => "newPost",
+                "params" => array(
+                    "userID" => "$userID",
+                    "username" => "$username"
+                )
+
+            );
+            $NewPostButton = $ajax->ajaxButton("AdminClient.php", "newPost", (array) $newPostParams);
+
+            $editBlogParams = array(
+                "request" => $editBlog,
+                "method" => "request",
+                "params" => array(
+                    "orderBy" => "postID",
+                    "whichOrder" => "DESC"
+                )
+
+            );
+            $EditBlogButton = $ajax->ajaxButton("AdminClient.php", "editBlog", (array) $editBlogParams);
+            $EditBlogRequest = $ajax->ajaxRequest("AdminClient.php", (array) $editBlogParams);
+
+            self::$htmlString = <<<footerUI
+            
             <script>
             
                 function loader() {
@@ -29,18 +75,7 @@ namespace admin {
             
                 $(document).ready(function() {
                 
-                    // Default POST request to show the Edit Blog panel
-                    loader();
-                    var dataString = 'request=EditBlog';
-                    $.ajax({
-                        type: "POST",
-                        url: "AdminClient.php",
-                        data: dataString,
-                        cache: false,
-                        success : function(data) {
-                            $("#blog").html(data);
-                        }
-                    });
+                    $EditBlogRequest;
                     
                     $('#blogToolsButton').on('click' , function(){
                         $('#blogToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
@@ -50,64 +85,21 @@ namespace admin {
                         $('#userToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
                     });
                     
-                    $('#showBlog').on('click' , function(){
-                        loader();
-                        var dataString = 'request='+ $(this).val();
-                        $.ajax({
-                            type: "POST",
-                            url: "AdminClient.php",
-                            data: dataString,
-                            cache: false,
-                            success : function(data) {
-                                $("#blog").html(data);
-                            }
-                        });
-                        return false;
-                    });
-            
-                    $('#editBlog').on('click' , function(){
-                        loader();
-                        var dataString = 'request='+ $(this).val();
-                        $.ajax({
-                            type: "POST",
-                            url: "AdminClient.php",
-                            data: dataString,
-                            cache: false,
-                            success : function(data) {
-                                $("#blog").html(data);
-                            }
-                        });
-                        return false;
-                    });
-                    
-                    $('#newPost').on('click' , function(){
-                        loader();
-                        var dataString = 'request='+ $(this).val();
-                        $.ajax({
-                            type: "POST",
-                            url: "AdminClient.php",
-                            data: dataString,
-                            cache: false,
-                            success : function(data) {
-                                $("#blog").html(data);
-                            }
-                        });
-                        return false;
-                    });
-                    
-                    
-                  
+                    $ShowBlogButton
+                    $EditBlogButton
+                    $NewPostButton
+               
                 })
-                
-        
-        
+         
         </script>
         </body>
         </html>
         
 footerUI;
 
-            parent::__construct($auth, $USER, self::$htmlString);
+            parent::__construct("admin", $USER, self::$htmlString);
         }
+
+
     }
 }

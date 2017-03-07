@@ -90,7 +90,10 @@ use framework\blog\ArticleFactory;
 
     <div class="col-sm-6">
         <div class="panel-group">
-            <?php $blog = new ArticleFactory("blogMain", "getBlog"); ?>
+            <?php
+                $blog = new ArticleFactory();
+                $blog->getBlog(array("whichBlog" => "blogMain"));
+            ?>
         </div>
     </div>
 

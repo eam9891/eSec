@@ -27,14 +27,14 @@ namespace framework\blog {
             if ($obj->published) {
                 $publishButton = <<<publishButton
                     <button type='button' class='btn btn-default disabled'> Published </button>
-                    <button type='button' class='btn btn-default btn-info publishPost' value='$obj->id'> Revert </button>
+                    <button type='button' class='btn btn-default btn-info revertPublished' value='$obj->id'> Revert </button>
                 
 publishButton;
             } else {
                 $publishButton = <<<revertButtons
 
                     
-                    <button type='button' class='btn btn-info revertPublished' value='$obj->id'> Publish </button>
+                    <button type='button' class='btn btn-info publishPost' value='$obj->id'> Publish </button>
                 
 revertButtons;
             }
@@ -54,6 +54,8 @@ revertButtons;
                         $publishButton
                     </td>
                 </tr>
+                
+              
              
 blogMainUI;
 

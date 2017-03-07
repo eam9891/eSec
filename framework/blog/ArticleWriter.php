@@ -32,7 +32,7 @@ namespace framework\blog {
                     <h2>$obj->title</h2>
                     <p>$date</p>
                 </div>
-                <div class="panel-body">$obj->description</div>
+                <div class="panel-body" style="height: 400px; overflow: hidden;">$obj->content</div>
                 <div class="panel-footer">
                     <p class="pull-left" style="width:50%;">Posted by <a href="">$obj->author</a> at $time</p>
                     <button type="button" class="btn btn-default pull-right"> 

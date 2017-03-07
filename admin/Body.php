@@ -99,7 +99,7 @@ class Body extends IUserInterface {
                 </div>
             </div>
 headerUI;
-        parent::__construct($auth, $USER, self::$htmlString);
+        parent::__construct("admin", $USER, self::$htmlString);
     }
 }
 

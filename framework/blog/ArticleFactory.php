@@ -15,21 +15,16 @@ ini_set("display_errors", 1);
 use framework\database\Database;
 
 class ArticleFactory {
-    private $db;
 
-    public function __construct($whichBlog, $whichMethod) {
-        $this->$whichMethod($whichBlog);
-    }
 
-    private function getBlog($thisBlog) {
-        $this->db = new Database();
-        $blog = $this->db->blog($thisBlog);
+    public function getBlog($thisBlog) {
+        $blog = $thisBlog['whichBlog'];
+        $blog = Database::blog($blog);
         while ($row = $blog->fetch()) {
             $article = new Article(
                 $row['postID'],
                 $row['postTitle'],
                 $row['postDate'],
-                $row['postDescription'],
                 $row['postAuthor'],
                 $row['postContent'],
                 $row['postPublished']

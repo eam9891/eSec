@@ -72,7 +72,7 @@ class Head extends IUserInterface {
             </head>
             <body>
 headUI;
-        parent::__construct($auth, $USER, self::$htmlString);
+        parent::__construct("admin", $USER, self::$htmlString);
     }
 
 }

@@ -23,7 +23,7 @@ namespace home {
             </html>
            
 footerUI;
-            parent::__construct($auth, $USER, self::$htmlString);
+            parent::__construct("user", $USER, self::$htmlString);
         }
     }
 }

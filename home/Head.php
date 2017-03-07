@@ -69,7 +69,7 @@ namespace home {
             </head>
             <body>
 headUI;
-            parent::__construct($auth, $USER, self::$htmlString);
+            parent::__construct("user", $USER, self::$htmlString);
         }
 
     }

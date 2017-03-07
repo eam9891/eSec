@@ -17,8 +17,8 @@ namespace home {
         protected static $htmlString;
 
 
-        public function __construct(Authenticate &$auth, User &$USER, &$html) {
-            self::$auth = $auth;
+        public function __construct(string $authType, User &$USER, &$html) {
+            self::$auth = new Authenticate($authType);
 
             if (self::$auth) {
                 self::$htmlString = &$html;

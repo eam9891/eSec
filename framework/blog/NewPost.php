@@ -13,16 +13,15 @@ namespace framework\blog {
 
     class NewPost {
         private $user, $role;
-        public function __construct(User &$USER) {
+        public function newPost(array &$jsonUserObj) {
             $auth = new Authenticate("contributor");
             if ($auth) {
-                $this->showUI($USER);
+                $this->showUI($jsonUserObj);
             }
         }
 
-        private function showUI(User &$USER) {
-            $this->user = $USER->getUsername();
-            $this->role = $USER->getRole();
+        private function showUI(array &$jsonUserObj) {
+            $this->user = $jsonUserObj['username'];
 
             echo <<<newPost
 
@@ -69,7 +68,7 @@ namespace framework\blog {
                         loader();
                         $.ajax({
                             type: "POST",
-                            url: "SubmitPost.php",
+                            url: "../framework/blog/SubmitPost.php",
                             data: dataString,
                             cache: false,
                             success : function(data) {
@@ -86,11 +85,11 @@ namespace framework\blog {
                 
                 
                 <form id="submitPost">
-                    <label for="postTitle">Title: </label>
+                    
                     
                     
                     <textarea class="editable" type="text" id="postCont" name="postCont" >
-                        <h1 id="postTitle" name="postTitle" style="font-size: 40px; text-align: center; width: 100%">Enter your Post Title Here</h1><br>
+                        <h1 style="font-size: 40px; text-align: center; width: 100%">Enter your Post Title Here</h1><br>
                         <p style="text-align: center; font-size: 15px;">
                             <img title="TinyMCE Logo" src="//www.tinymce.com/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" />
                         </p>

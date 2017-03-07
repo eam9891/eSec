@@ -18,8 +18,10 @@ namespace framework\blog {
 
     class EditBlog {
         private $auth;
-        public function request(Authenticate &$auth, $orderBy, $whichOrder) {
-            $this->auth = $auth;
+        public function request(array $params) {
+            $orderBy = $params['orderBy'];
+            $whichOrder = $params['whichOrder'];
+            $auth = new Authenticate("admin");
             if ($auth) {
                 $db = new Database();
                 $query = "SELECT * FROM blogMain UNION SELECT * FROM blogSubmissions ORDER BY $orderBy $whichOrder";
@@ -33,6 +35,26 @@ namespace framework\blog {
                         'request'       : 'DeletePost',
                         'postID'        : $(this).val(),
                         'postPublished' : $('.postPublished').val()
+                    };
+                    
+                    loader();
+                    $.ajax({
+                        type: "POST",
+                        url: "AdminClient.php",
+                        data: dataString,
+                        cache: false,
+                        success : function(data) {
+                            $("#blog").html(data);
+                        }
+                    });
+                    return false;
+                });
+                
+                $('.publishPost').on('click' , function(){
+                      
+                    var dataString = { 
+                        'request'       : 'PublishPost',
+                        'postID'        : $(this).val()
                     };
                     
                     loader();
@@ -67,7 +89,6 @@ editBlogUI;
                         $row['postID'],
                         $row['postTitle'],
                         $row['postDate'],
-                        $row['postDescription'],
                         $row['postAuthor'],
                         $row['postContent'],
                         $row['postPublished']

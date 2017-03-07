@@ -136,7 +136,7 @@ namespace home {
             </div>
         
 bodyUI;
-            parent::__construct($auth, $USER, self::$htmlString);
+            parent::__construct("user", $USER, self::$htmlString);
         }
     }
 }
