@@ -18,19 +18,10 @@ $usr = new User();
 $USER = $usr->getUser($_SESSION['username']);
 
 
-//show message from add / edit page
-/*if(isset($_GET['delpost'])){
-    //DELETE FROM front_blog WHERE postID = :postID
-    //$stmt->execute(array(':postID' => $_GET['delpost']));
-    $db->deleteWhere("front_blog", "postID = ?", $_GET['delpost']);
-    header('Location: index.php?action=deleted');
-    exit;
-}*/
-
-$head   = new Head  ($auth, $USER);
-$header = new Header($auth, $USER);
-$body   = new Body  ($auth, $USER);
-$footer = new Footer($auth, $USER);
+$head   = new Head  ($USER);
+$header = new Header($USER);
+$body   = new Body  ($USER);
+$footer = new Footer($USER);
 ?>
 
 

@@ -13,7 +13,7 @@ namespace home {
 
     class Footer extends IUserInterface {
 
-        public function __construct(Authenticate &$auth, User &$USER) {
+        public function __construct(User &$USER) {
             self::$htmlString = <<<footerUI
             <footer class="container-fluid text-center">
                 <p>Footer Text</p>

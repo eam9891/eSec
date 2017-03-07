@@ -13,7 +13,7 @@ namespace home {
 
     class Header extends IUserInterface {
 
-        public function __construct(Authenticate &$auth, User &$USER) {
+        public function __construct(User &$USER) {
             $username = $USER->getUsername();
             $userRole = $USER->getRole();
             $email = $USER->getEmail();

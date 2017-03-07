@@ -24,8 +24,8 @@ namespace admin {
     $usr = new User();
     $USER = $usr->getUser($_SESSION['username']);
 
-    $head   = new Head  ($auth, $USER);
-    $header = new Header($auth, $USER);
-    $body   = new Body  ($auth, $USER);
-    $footer = new Footer($auth, $USER);
+    $head   = new Head  ($USER);
+    $header = new Header($USER);
+    $body   = new Body  ($USER);
+    $footer = new Footer($USER);
 }

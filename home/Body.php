@@ -13,7 +13,7 @@ namespace home {
 
     class Body extends IUserInterface {
 
-        public function __construct(Authenticate &$auth, User &$USER) {
+        public function __construct(User &$USER) {
             $username = $USER->getUsername();
             $role = $USER->getRole();
             self::$htmlString = <<<bodyUI

@@ -37,11 +37,12 @@ class AjaxHandler {
         $this->divID = $divID;
         $this->dataString = json_encode($dataString);
 
+
         $ajaxRequest = <<<ajax
             
             $('#$this->divID').on('click' , function(){
                 loader();
-             
+                
                 $.ajax({
                     type: "POST",
                     url: "$this->url",
@@ -55,6 +56,7 @@ class AjaxHandler {
             });
         
 ajax;
+
         return (string) $ajaxRequest;
     }
 
@@ -84,7 +86,7 @@ ajax;
                     $("#blog").html(data);
                 }
             });
-            return false;
+            
        
 ajax;
         return (string) $ajaxRequest;

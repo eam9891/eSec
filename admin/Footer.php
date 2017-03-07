@@ -16,7 +16,7 @@ namespace admin {
     class Footer extends IUserInterface {
 
 
-        public function __construct(Authenticate &$auth, User &$USER) {
+        public function __construct(User &$USER) {
 
             $editBlog = "framework_blog_EditBlog";
             $showBlog = "framework_blog_ArticleFactory";
@@ -62,38 +62,37 @@ namespace admin {
 
             self::$htmlString = <<<footerUI
             
-            <script>
+<script>
+    
+    function loader() {
+        $(document).ajaxStart(function(){
+            $("#wait").css("display", "block");
+        });
+        $(document).ajaxComplete(function(){
+            $("#wait").css("display", "none");
+        });
+    }
             
-                function loader() {
-                    $(document).ajaxStart(function(){
-                        $("#wait").css("display", "block");
-                    });
-                    $(document).ajaxComplete(function(){
-                        $("#wait").css("display", "none");
-                    });
-                }
+    $EditBlogRequest
+        
+    $(document).ready(function() {
+        
+        $('#blogToolsButton').on('click' , function(){
+            $('#blogToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
+        });
+        
+        $('#userToolsButton').on('click' , function(){
+            $('#userToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
+        });
             
-                $(document).ready(function() {
-                
-                    $EditBlogRequest;
-                    
-                    $('#blogToolsButton').on('click' , function(){
-                        $('#blogToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
-                    });
-                    
-                    $('#userToolsButton').on('click' , function(){
-                        $('#userToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
-                    });
-                    
-                    $ShowBlogButton
-                    $EditBlogButton
-                    $NewPostButton
-               
-                })
-         
-        </script>
-        </body>
-        </html>
+            $ShowBlogButton
+            $EditBlogButton
+            $NewPostButton
+        })
+     
+</script>
+</body>
+</html>
         
 footerUI;
 

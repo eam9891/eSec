@@ -12,18 +12,14 @@ namespace framework\blog {
     use framework\User;
 
     class NewPost {
-        private $user, $role;
-        public function newPost(array &$jsonUserObj) {
+        private $user;
+        public function newPost(array $jsonUserObj) {
+
             $auth = new Authenticate("contributor");
             if ($auth) {
-                $this->showUI($jsonUserObj);
-            }
-        }
+                $this->user = $jsonUserObj['username'];
 
-        private function showUI(array &$jsonUserObj) {
-            $this->user = $jsonUserObj['username'];
-
-            echo <<<newPost
+                echo <<<newPost
 
                 <script>
                 
@@ -86,7 +82,10 @@ namespace framework\blog {
                 
                 <form id="submitPost">
                     
-                    
+                    <div class="form-group">
+                        <label for="postTitle">Title: </label>
+                        <input type="text" class="form-control" id="postTitle" name="postTitle">
+                    </div>
                     
                     <textarea class="editable" type="text" id="postCont" name="postCont" >
                         <h1 style="font-size: 40px; text-align: center; width: 100%">Enter your Post Title Here</h1><br>
@@ -143,7 +142,9 @@ namespace framework\blog {
                 
          
 newPost;
+            }
         }
+
 
     }
 }
