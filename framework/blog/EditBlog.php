@@ -1,33 +1,30 @@
 <?php
 
 /**
-    * Created by PhpStorm.
-    * User: Ethan
-    * Date: 2/11/2017
-    * Time: 6:07 PM
-    */
+ * Created by PhpStorm.
+ * User: Ethan
+ * Date: 2/11/2017
+ * Time: 6:07 PM
+ */
 
-namespace admin;
+namespace framework\blog {
 
-error_reporting(E_ALL | E_STRICT);
-ini_set("display_errors", 1);
+    error_reporting(E_ALL | E_STRICT);
+    ini_set("display_errors", 1);
 
-
-use framework\blog\AdminWriter;
-use framework\blog\Article;
-use framework\libs\Authenticate;
-use framework\database\Database;
+    use framework\libs\Authenticate;
+    use framework\database\Database;
 
 
-class EditBlog {
-    private $auth;
-    public function request(Authenticate &$auth, $orderBy, $whichOrder) {
-        $this->auth = $auth;
-        if ($auth) {
-            $db = new Database();
-            $query = "SELECT * FROM blogMain UNION SELECT * FROM blogSubmissions ORDER BY $orderBy $whichOrder";
-            $blogPosts = $db->query($query);
-            echo <<<'editBlogUI'
+    class EditBlog {
+        private $auth;
+        public function request(Authenticate &$auth, $orderBy, $whichOrder) {
+            $this->auth = $auth;
+            if ($auth) {
+                $db = new Database();
+                $query = "SELECT * FROM blogMain UNION SELECT * FROM blogSubmissions ORDER BY $orderBy $whichOrder";
+                $blogPosts = $db->query($query);
+                echo <<<'editBlogUI'
         
             <script>
                 $('.deletePost').on('click' , function(){
@@ -65,25 +62,26 @@ class EditBlog {
                     <tbody style="text-align: left;">
       
 editBlogUI;
-            while($row = $blogPosts->fetch()){
-                $article = new Article(
-                    $row['postID'],
-                    $row['postTitle'],
-                    $row['postDate'],
-                    $row['postDescription'],
-                    $row['postAuthor'],
-                    $row['postContent'],
-                    $row['postPublished']
-                );
-                $writer = new AdminWriter($auth, $article);
+                while($row = $blogPosts->fetch()){
+                    $article = new Article(
+                        $row['postID'],
+                        $row['postTitle'],
+                        $row['postDate'],
+                        $row['postDescription'],
+                        $row['postAuthor'],
+                        $row['postContent'],
+                        $row['postPublished']
+                    );
+                    $writer = new AdminWriter($article);
 
 
+                }
+                echo'</tbody>';
+                echo'</table>';
+                echo'</div>';
             }
-            echo'</tbody>';
-            echo'</table>';
-            echo'</div>';
+
         }
 
     }
-
 }

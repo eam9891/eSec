@@ -19,6 +19,9 @@ namespace admin {
 
     use framework\blog\ArticleFactory;
     use framework\blog\DeletePost;
+    use framework\blog\EditBlog;
+    use framework\blog\NewPost;
+    use framework\blog\SubmitPost;
     use framework\libs\Authenticate;
     use framework\User;
 
@@ -35,11 +38,6 @@ namespace admin {
             $this->auth = new Authenticate("admin");
             $this->USER = new User();
             $this->USER = $this->USER->getUser($_SESSION['username']);
-
-            //if (!empty($_POST['USER'])) {
-            //    $this->USER = $_POST['USER'];
-            //    unset($_POST['USER']);
-            //}
 
             if (!empty($_POST['request'])) {
                 $this->post = $_POST['request'];

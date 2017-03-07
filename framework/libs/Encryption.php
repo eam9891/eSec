@@ -7,7 +7,7 @@
  * Time: 6:28 PM
  */
 
-namespace framework;
+namespace framework\libs;
 
 class Encryption {
 

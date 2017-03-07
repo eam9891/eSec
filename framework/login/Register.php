@@ -9,6 +9,9 @@
 
 namespace framework\login;
 
+use framework\database\Database;
+use framework\libs\Encryption;
+
 error_reporting(E_ALL | E_STRICT);
 ini_set("display_errors", 1);
 
@@ -18,7 +21,7 @@ class Register {
     private $password;
     private $email;
     private $stmt;
-    private $cell;
+    private $row;
     private $role = "user";
 
     public function doRegistration(string $user, string $pass, string $email) {
@@ -54,19 +57,19 @@ class Register {
 
         // This function takes three parameters, the table name, the where
         // clause, and the query parameters, and it returns a single cell.
-        $this->cell = Database::selectOne("users", "username = ?", [$this->username]);
+        $this->row = Database::selectOne("users", "username = ?", [$this->username]);
 
         // If a cell was returned, then we know a matching username was found in
         // the database already and we should not allow the user to continue.
-        if($this->cell) {
+        if($this->row) {
             die("This username is already in use");
         }
 
         // Now we perform the same type of check for the email address, in order
         // to ensure that it is unique.
-        $this->cell = Database::selectOne("users", "email = ?", [$this->email]);
+        $this->row = Database::selectOne("users", "email = ?", [$this->email]);
 
-        if($this->cell)
+        if($this->row)
         {
             die("This email address is already registered");
         }
@@ -122,11 +125,11 @@ class Register {
 
 
         // This redirects the user back to the index/login page after they registerForm
-        header("Location: ../index.php");
+        header("Location: ../../index.php");
 
         // Calling die or exit after performing a redirect using the header function is critical.
         // The rest of your PHP script will continue to execute and will be sent to the user if you do not die or exit.
-        die("Redirecting to ../index.php");
+        die("Redirecting to ../../index.php");
     }
 
 }

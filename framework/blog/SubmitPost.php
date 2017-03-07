@@ -6,7 +6,7 @@
  * Time: 7:03 PM
  */
 
-namespace admin {
+namespace framework\blog {
 
     error_reporting(E_ALL | E_STRICT);
     ini_set("display_errors", 1);
@@ -18,7 +18,6 @@ namespace admin {
 
     use framework\database\Database;
     use framework\libs\Authenticate;
-    use framework\User;
 
 
     class SubmitPost {
@@ -54,7 +53,7 @@ namespace admin {
             if(!isset($error)){
 
                 try {
-                    $db = new Database();
+
                     //insert into database
                     $query = '
                             INSERT INTO blogSubmissions (postTitle,postContent,postAuthor) 
@@ -65,7 +64,7 @@ namespace admin {
                         ':postCont' => $this->postCont,
                         ':postAuthor' => $this->postAuthor
                     );
-                    $db->insert($query, $query_params);
+                    Database::insert($query, $query_params);
 
                     //redirect to index page
                     //header('Location: 192.168.0.132/undergroundartschool/'.$this->role.'/');

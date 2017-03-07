@@ -67,7 +67,7 @@ class Authenticate {
                 }
 
             case "contributor":
-                if ($this->dbRole == "user" || $this->dbRole == "contributor" || $this->dbRole == "admin") {
+                if ($this->dbRole == "contributor" || $this->dbRole == "admin") {
                     $this->returnAuthStatus = true;
                     break;
                 } else {
@@ -78,10 +78,11 @@ class Authenticate {
                 }
 
             case "user":
-                if ($this->dbRole == "user" || $this->dbRole == "admin") {
+                if ($this->dbRole == "user" || $this->dbRole == "contributor" || $this->dbRole == "admin") {
                     $this->returnAuthStatus = true;
                     break;
                 } else {
+                    session_destroy();
                     header("Location: ../");
                     die("Redirecting to: ../");
                     break;

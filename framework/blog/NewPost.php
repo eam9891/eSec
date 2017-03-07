@@ -6,7 +6,7 @@
  * Time: 6:15 PM
  */
 
-namespace admin {
+namespace framework\blog {
 
     use framework\libs\Authenticate;
     use framework\User;

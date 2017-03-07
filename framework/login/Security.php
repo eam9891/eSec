@@ -15,7 +15,7 @@ ini_set("display_errors", 1);
 session_start();
 
 use framework\User;
-use framework\Encryption;
+use framework\libs\Encryption;
 
 class Security extends ILogin {
 
@@ -49,7 +49,7 @@ class Security extends ILogin {
                 $USER->setActive(true);
 
                 // The Bouncer will take care of redirecting users based on access level.
-                $bouncer = new Bouncer($this->login_ok, $USER);
+                $bouncer = new Login($this->login_ok, $USER);
                 $bouncer->secureSession();
 
 

@@ -14,7 +14,7 @@ ini_set("display_errors", 1);
 
 use framework\User;
 
-class Bouncer {
+class Login {
     private $loginOk;
     private $USER;
     public function __construct($loginOK, User $obj) {
@@ -49,7 +49,7 @@ class Bouncer {
                     break;
             }
         } else {
-            // TODO: Implement some error reporting
+
             header("Location: http://192.168.0.132/undergroundartschool/");
             die("Redirecting to: http://192.168.0.132/undergroundartschool/");
         }

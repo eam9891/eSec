@@ -12,7 +12,8 @@ namespace framework\blog {
 
     class AdminWriter implements IBlogWriter {
 
-        public function __construct(Authenticate &$auth, Article &$obj) {
+        public function __construct(Article &$obj) {
+            $auth = new Authenticate("admin");
             if ($auth) {
                 $this->write($obj);
             }
