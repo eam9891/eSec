@@ -41,12 +41,7 @@ namespace admin {
             } else {
                 $error[] = 'Please enter the title.';
             }
-            if(isset($_POST['postDesc'])) {
-                $this->postDesc = $_POST['postDesc'];
-                unset($_POST['postDesc']);
-            } else {
-                $error[] = 'Please enter the description.';
-            }
+
             if(isset($_POST['postCont'])) {
                 $this->postCont = $_POST['postCont'];
                 unset($_POST['postCont']);
@@ -62,12 +57,11 @@ namespace admin {
                     $db = new Database();
                     //insert into database
                     $query = '
-                            INSERT INTO blogSubmissions (postTitle,postDescription,postContent,postAuthor) 
-                            VALUES (:postTitle, :postDesc, :postCont, :postAuthor)
+                            INSERT INTO blogSubmissions (postTitle,postContent,postAuthor) 
+                            VALUES (:postTitle, :postCont, :postAuthor)
                         ';
                     $query_params = array(
                         ':postTitle' => $this->postTitle,
-                        ':postDesc' => $this->postDesc,
                         ':postCont' => $this->postCont,
                         ':postAuthor' => $this->postAuthor
                     );
@@ -82,7 +76,10 @@ namespace admin {
                 }
 
             } else {
-                echo $error;
+                foreach ($error as $err) {
+                    echo $err;
+                }
+
             }
         }
     }

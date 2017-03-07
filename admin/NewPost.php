@@ -13,7 +13,8 @@ namespace admin {
 
     class NewPost {
         private $user, $role;
-        public function __construct(Authenticate $auth, User &$USER) {
+        public function __construct(User &$USER) {
+            $auth = new Authenticate("contributor");
             if ($auth) {
                 $this->showUI($USER);
             }
@@ -26,15 +27,16 @@ namespace admin {
             echo <<<newPost
 
                 <script>
+                
                     tinymce.init({
-                        selector: ".editable",
-                       
+                        selector: "textarea.editable",
+                        
+                        theme: 'modern',
                         setup: function (editor) {
                             editor.on('change', function () {
                                 editor.save();
                             });
                         },
-                        theme: 'modern',
                         plugins: [
                             'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                             'searchreplace wordcount visualblocks visualchars code fullscreen',
@@ -42,7 +44,7 @@ namespace admin {
                             'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
                         ],
                         toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                        toolbar2: 'print preview media | fontselect forecolor backcolor emoticons | codesample',
+                        toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
                         image_advtab: true,
                         templates: [
                             { title: 'Test template 1', content: 'Test 1' },
@@ -51,25 +53,19 @@ namespace admin {
                         content_css: [
                             '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                             '//www.tinymce.com/css/codepen.min.css'
-                        ],
-                        font_formats: 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats'
+                        ]
                     });
+                    
                     $(document).on('focusin', function(e) {
                         if ($(e.target).closest(".mce-window").length) {
                             e.stopImmediatePropagation();
                         }
                     });
                     
-                    $('#submitPost').on('click' , function(){
-                       
-                        
-                        var dataString = { 
-                            'postTitle'  : $('#postTitle').val(),
-                            'postDesc'   : $('#postDesc').val(),
-                            'postCont'   : $('#postCont').val(),
-                            'postAuthor' : $('#postAuthor').val()
-                        };
-                        
+                    $('#submitPost').on('submit' , function(){
+                        // save TinyMCE instances before serialize
+                        tinyMCE.triggerSave();
+                        var dataString = $(this).serialize();
                         loader();
                         $.ajax({
                             type: "POST",
@@ -89,32 +85,64 @@ namespace admin {
                 
                 
                 
-                
-                
-                <div class="editable">
+                <form id="submitPost">
+                    <label for="postTitle">Title: </label>
                     
-                
-                    <h1>
-                        <input type='text'  id="postTitle" name='postTitle' placeholder="Enter Post Title Here">
-                    </h1>
-                
-                    <p>
-                        <textarea  id="postDesc" name='postDesc' cols='60' rows='10' placeholder="Enter Description Here"></textarea>
-                    </p>
-                
-                    <p>
-                        <textarea  id="postCont" name='postCont' cols='60' rows='10' placeholder="Enter Content Here"></textarea>
-                    </p>
+                    
+                    <textarea class="editable" type="text" id="postCont" name="postCont" >
+                        <h1 id="postTitle" name="postTitle" style="font-size: 40px; text-align: center; width: 100%">Enter your Post Title Here</h1><br>
+                        <p style="text-align: center; font-size: 15px;">
+                            <img title="TinyMCE Logo" src="//www.tinymce.com/images/glyph-tinymce@2x.png" alt="TinyMCE Logo" width="110" height="97" />
+                        </p>
                         
+                        <h5 style="text-align: center;">Note, this is not an "enterprise/premium" demo.<br>Visit the <a href="https://www.tinymce.com/pricing/#demo-enterprise">pricing page</a> to demo our premium plugins.</h5>
+                        <p>Please try out the features provided in this full featured example.</p>
+                        <p>Note that any <b>MoxieManager</b> file and image management functionality in this example is part of our commercial offering – the demo is to show the integration.</h2>
+                        
+                        <h2>Got questions or need help?</h2>
+                        <ul>
+                            <li>Our <a href="//www.tinymce.com/docs/">documentation</a> is a great resource for learning how to configure TinyMCE.</li>
+                            <li>Have a specific question? Visit the <a href="http://community.tinymce.com/forum/">Community Forum</a>.</li>
+                            <li>We also offer enterprise grade support as part of <a href="http://tinymce.com/pricing">TinyMCE Enterprise</a>.</li>
+                        </ul>
                     
-                   
+                        <h2>A simple table to play with</h2>
+                        <table style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Cost</th>
+                                    <th>Really?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>TinyMCE</td>
+                                    <td>Free</td>
+                                    <td>YES!</td>
+                                </tr>
+                                <tr>
+                                    <td>Plupload</td>
+                                    <td>Free</td>
+                                    <td>YES!</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     
-                </div>
-                <input type="hidden" id="postAuthor" name="postAuthor" value=$this->user>
-                <p><button id='submitPost' type='submit' name='request' value='SubmitPost'>Submit Post</button></p>
+                        <h2>Found a bug?</h2>
+                        <p>If you think you have found a bug please create an issue on the <a href="https://github.com/tinymce/tinymce/issues">GitHub repo</a> to report it to the developers.</p>
+                        
+                        <h2>Finally ...</h2>
+                        <p>Don't forget to check out our other product <a href="http://www.plupload.com" target="_blank">Plupload</a>, your ultimate upload solution featuring HTML5 upload support.</p>
+                        <p>Thanks for supporting TinyMCE! We hope it helps you and your users create great content.<br>All the best from the TinyMCE team.</p>
+                    </textarea>
+                    
+                    <input type="hidden" id="postAuthor" name="postAuthor" value=$this->user>
+                    
+                    <button type='submit' name='request' value='SubmitPost'>Submit Post</button>
+                </form>
                 
-                
-            
+         
 newPost;
         }
 

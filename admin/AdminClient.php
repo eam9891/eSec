@@ -54,7 +54,7 @@ namespace admin {
                         $this->callClass = new ArticleFactory("blogMain", "getBlog");
                         break;
                     case "NewPost" :
-                        $this->callClass = new NewPost($this->auth, $this->USER);
+                        $this->callClass = new NewPost($this->USER);
                         break;
                     case "SubmitPost" :
                         $this->callClass = new SubmitPost();
