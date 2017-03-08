@@ -15,13 +15,14 @@ namespace home {
 
         protected static $auth;
         protected static $htmlString;
-
+        protected static $USER;
 
         public function __construct(string $authType, User &$USER, &$html) {
             self::$auth = new Authenticate($authType);
+            self::$USER =& $USER;
 
             if (self::$auth) {
-                self::$htmlString = &$html;
+                self::$htmlString =& $html;
                 $this->showUI();
             }
         }

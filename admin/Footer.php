@@ -31,7 +31,7 @@ namespace admin {
                 )
 
             );
-            $ShowBlogButton = $ajax->ajaxButton("AdminClient.php", "showBlog", (array) $showBlogParams);
+            $ShowBlogButton = $ajax->ajaxButton("AdminClient.php", "#showBlog", (array) $showBlogParams);
 
 
 
@@ -46,7 +46,7 @@ namespace admin {
                 )
 
             );
-            $NewPostButton = $ajax->ajaxButton("AdminClient.php", "newPost", (array) $newPostParams);
+            $NewPostButton = $ajax->ajaxButton("AdminClient.php", "#newPost", (array) $newPostParams);
 
             $editBlogParams = array(
                 "request" => $editBlog,
@@ -57,8 +57,10 @@ namespace admin {
                 )
 
             );
-            $EditBlogButton = $ajax->ajaxButton("AdminClient.php", "editBlog", (array) $editBlogParams);
+            $EditBlogButton = $ajax->ajaxButton("AdminClient.php", "#editBlog", (array) $editBlogParams);
             $EditBlogRequest = $ajax->ajaxRequest("AdminClient.php", (array) $editBlogParams);
+
+
 
             self::$htmlString = <<<footerUI
             
@@ -88,6 +90,7 @@ namespace admin {
             $ShowBlogButton
             $EditBlogButton
             $NewPostButton
+            
         })
      
 </script>

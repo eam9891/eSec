@@ -20,30 +20,41 @@ namespace framework\blog {
     use framework\libs\Authenticate;
 
     class PublishPost {
+        private $auth;
         public function __construct() {
-            $auth = new Authenticate("admin");
-            if ($auth) {
-                $this->publishPost();
-            }
+            $this->auth = new Authenticate("admin");
+
         }
 
-        private function publishPost() {
-            if (isset ($_POST['postID'])) {
-                $id = $_POST['postID'];
+        public function publishPost(array $params) {
+            $postID = $params['postID'];
 
-                $query = "INSERT INTO blogMain (postID, postTitle, postContent, postDate, postAuthor, postPublished) 
-                  SELECT postID, postTitle, postContent, postDate, postAuthor, postPublished FROM blogSubmissions WHERE postID = $id";
+            if ($this->auth) {
+                if (isset ($postID)) {
 
-                Database::query($query);
 
-                $deleteOld = "DELETE FROM blogSubmissions WHERE postID = $id";
-                Database::query($deleteOld);
 
+                    $query = "
+                        INSERT INTO blogMain (postID, postTitle, postContent, postDate, postAuthor, postPublished) 
+                        SELECT postID, postTitle, postContent, postDate, postAuthor, postPublished 
+                        FROM blogSubmissions WHERE postID = $postID
+                    ";
+                    Database::query($query);
+
+                    $deleteOld = "DELETE FROM blogSubmissions WHERE postID = $postID";
+                    Database::query($deleteOld);
+
+                    $query = "
+                        UPDATE blogMain SET postPublished = true
+                    ";
+                    Database::query($query);
+
+                    header("Location: index.php");
+
+                }
             }
 
 
-
-            header("Location: index.php");
         }
     }
 

@@ -28,8 +28,6 @@ namespace admin {
         private $params;
         private $auth;
 
-
-
         public function __construct() {
 
             $this->auth = new Authenticate("admin");

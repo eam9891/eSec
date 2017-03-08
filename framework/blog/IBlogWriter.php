@@ -9,5 +9,10 @@
 namespace framework\blog;
 
 interface IBlogWriter {
+    /**
+     * @param \framework\blog\Article $obj
+     *
+     * @return mixed
+     */
     public function write(Article $obj);
 }

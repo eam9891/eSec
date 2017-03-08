@@ -12,6 +12,7 @@ namespace framework\blog {
     error_reporting(E_ALL | E_STRICT);
     ini_set("display_errors", 1);
 
+    use framework\libs\AjaxHandler;
     use framework\libs\Authenticate;
     use framework\database\Database;
 
@@ -26,64 +27,25 @@ namespace framework\blog {
                 $db = new Database();
                 $query = "SELECT * FROM blogMain UNION SELECT * FROM blogSubmissions ORDER BY $orderBy $whichOrder";
                 $blogPosts = $db->query($query);
-                echo <<<'editBlogUI'
-        
-            <script>
-                $('.deletePost').on('click' , function(){
-                      
-                    var dataString = { 
-                        'request'       : 'DeletePost',
-                        'postID'        : $(this).val(),
-                        'postPublished' : $('.postPublished').val()
-                    };
-                    
-                    loader();
-                    $.ajax({
-                        type: "POST",
-                        url: "AdminClient.php",
-                        data: dataString,
-                        cache: false,
-                        success : function(data) {
-                            $("#blog").html(data);
-                        }
-                    });
-                    return false;
-                });
+
+
+
+                echo $tableHead = <<<tableHead
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Author</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align: left;">    
                 
-                $('.publishPost').on('click' , function(){
-                      
-                    var dataString = { 
-                        'request'       : 'PublishPost',
-                        'postID'        : $(this).val()
-                    };
-                    
-                    loader();
-                    $.ajax({
-                        type: "POST",
-                        url: "AdminClient.php",
-                        data: dataString,
-                        cache: false,
-                        success : function(data) {
-                            $("#blog").html(data);
-                        }
-                    });
-                    return false;
-                });
-            </script>
-        
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>Author</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody style="text-align: left;">
-      
-editBlogUI;
+tableHead;
+
                 while($row = $blogPosts->fetch()){
                     $article = new Article(
                         $row['postID'],
@@ -94,12 +56,89 @@ editBlogUI;
                         $row['postPublished']
                     );
                     $writer = new AdminWriter($article);
-
-
                 }
-                echo'</tbody>';
-                echo'</table>';
-                echo'</div>';
+
+
+                $deletePost = "framework_blog_DeletePost";
+                $publish = "framework_blog_PublishPost";
+                $editPost = "framework_blog_EditPost";
+
+                echo $string = <<<ajaxRequest
+
+                    <script>
+                    
+                        $('.editPost').on('click' , function(){
+                            loader();
+                            
+                            $.ajax({
+                                type: "POST",
+                                url: "AdminClient.php",
+                                data: {
+                                    'request' : '$editPost',
+                                    'method'  : 'editPost',
+                                    'params'  : {
+                                        'postID' : $(this).val(),
+                                        'postPublished' : $('.postPublished').val()
+                                    }
+                                },
+                                cache: false,
+                                success : function(data) {
+                                    $("#display").html(data);
+                                }
+                            });
+                            return false;
+                        });
+                    
+                        $('.deletePost').on('click' , function(){
+                            loader();
+                            
+                            $.ajax({
+                                type: "POST",
+                                url: "AdminClient.php",
+                                data: {
+                                    'request' : '$deletePost',
+                                    'method'  : 'deletePost',
+                                    'params'  : {
+                                        'postID' : $(this).val(),
+                                        'postPublished' : $('.postPublished').val()
+                                    }
+                                },
+                                cache: false,
+                                success : function(data) {
+                                    $("#display").html(data);
+                                }
+                            });
+                            return false;
+                        });
+                        
+                        $('.publishPost').on('click' , function(){
+                            loader();
+                            
+                            $.ajax({
+                                type: "POST",
+                                url: "AdminClient.php",
+                                data: {
+                                    'request' : '$publish',
+                                    'method'  : 'publishPost',
+                                    'params'  : {
+                                        'postID' : $(this).val()
+                                    }
+                                },
+                                cache: false,
+                                success : function(data) {
+                                    $("#display").html(data);
+                                }
+                            });
+                            return false;
+                        });
+                    </script>
+                    </tbody>
+                    </table>
+                    </div>
+               
+ajaxRequest;
+
+
             }
 
         }

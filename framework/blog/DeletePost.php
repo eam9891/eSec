@@ -24,45 +24,42 @@ class DeletePost {
 
     public function __construct() {
         $this->auth = new Authenticate("admin");
-        if ($this->auth) {
-            $this->deletePost();
-        }
+
     }
 
-    private function deletePost() {
+    public function deletePost(array $params) {
 
-        if (isset($_POST['postID'])) {
-            $this->postID = $_POST['postID'];
-            unset($_POST['postID']);
-        } else {
-            $error = "No post ID set!";
+
+        if ($this->auth) {
+            if (isset($params['postID'])) {
+                $this->postID = $params['postID'];
+                unset($params['postID']);
+            } else {
+                $error = "No post ID set!";
+            }
+            if (isset($params['postPublished'])) {
+                $this->postPublished = $params['postPublished'];
+                unset($params['postPublished']);
+            }
+
+            if ($this->postPublished) {
+                $this->table = "blogMain";
+            } else {
+                $this->table = "blogSubmissions";
+            }
+
+            if (!isset($error)) {
+
+                $query = "SELECT * FROM $this->table WHERE postID = $this->postID";
+                Database::query($query);
+
+
+
+                header("Location: index.php");
+            } else {
+                echo $error;
+            }
         }
-        if (isset($_POST['postPublished'])) {
-            $this->postPublished = $_POST['postPublished'];
-            unset($_POST['postPublished']);
-        }
-
-        if ($this->postPublished) {
-            $this->table = "blogMain";
-        } else {
-            $this->table = "blogSubmissions";
-        }
-
-        if (!isset($error)) {
-            $db = new Database();
-            $query = "DELETE FROM $this->table WHERE postID = $this->postID";
-            $db = $db->connect();
-            $db->exec($query);
-
-            header("Location: index.php");
-        } else {
-            echo $error;
-        }
-
-
-
     }
 
 }
-
-$worker = new DeletePost();

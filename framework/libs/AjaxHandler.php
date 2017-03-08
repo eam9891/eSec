@@ -40,7 +40,7 @@ class AjaxHandler {
 
         $ajaxRequest = <<<ajax
             
-            $('#$this->divID').on('click' , function(){
+            $('$this->divID').on('click' , function(){
                 loader();
                 
                 $.ajax({
@@ -49,7 +49,7 @@ class AjaxHandler {
                     data: $this->dataString,
                     cache: false,
                     success : function(data) {
-                        $("#blog").html(data);
+                        $("#display").html(data);
                     }
                 });
                 return false;
@@ -83,7 +83,7 @@ ajax;
                 data: $this->dataString,
                 cache: false,
                 success : function(data) {
-                    $("#blog").html(data);
+                    $("#display").html(data);
                 }
             });
             

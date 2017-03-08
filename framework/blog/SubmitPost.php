@@ -70,7 +70,7 @@ namespace framework\blog {
 
                     //redirect to index page
                     //header('Location: 192.168.0.132/undergroundartschool/'.$this->role.'/');
-                    header("Location: index.php");
+
 
                 } catch(\PDOException $e) {
                     echo $e->getMessage();
