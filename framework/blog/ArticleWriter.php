@@ -23,7 +23,7 @@ namespace framework\blog {
                 }
                 .blog-panel {
                     margin-bottom: 10px;
-                    padding-bottom: 10px;
+                    
                 }
             </style>
             
@@ -52,3 +52,4 @@ blogMainUI;
         }
     }
 }
+

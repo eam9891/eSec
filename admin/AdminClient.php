@@ -20,7 +20,6 @@ namespace admin {
 
     use framework\libs\Authenticate;
 
-
     class AdminClient {
 
         private $class;

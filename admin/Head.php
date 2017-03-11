@@ -14,6 +14,8 @@ namespace admin {
     class Head extends IUserInterface {
 
         public function __construct(User &$USER) {
+
+
             self::$htmlString = <<<headUI
 
 <!DOCTYPE html>
@@ -68,6 +70,8 @@ namespace admin {
             }
         }
     </style>
+    
+
 </head>
 <body>
 headUI;

@@ -8,6 +8,7 @@
 
 namespace admin {
 
+    use framework\blog\TinyMCE;
     use framework\libs\AjaxHandler;
     use framework\libs\Authenticate;
     use home\IUserInterface;
@@ -79,6 +80,7 @@ namespace admin {
         
     $(document).ready(function() {
         
+        
         $('#blogToolsButton').on('click' , function(){
             $('#blogToolsArrow').toggleClass('glyphicon-menu-down').toggleClass('glyphicon-menu-up');
         });
@@ -91,7 +93,7 @@ namespace admin {
             $EditBlogButton
             $NewPostButton
             
-        })
+    })
      
 </script>
 </body>

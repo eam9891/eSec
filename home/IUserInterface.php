@@ -17,8 +17,17 @@ namespace home {
         protected static $htmlString;
         protected static $USER;
 
+
+        /**
+         * IUserInterface constructor.
+         *
+         * @param string          $authType
+         * @param \framework\User $USER
+         * @param                 $html
+         */
         public function __construct(string $authType, User &$USER, &$html) {
             self::$auth = new Authenticate($authType);
+
             self::$USER =& $USER;
 
             if (self::$auth) {

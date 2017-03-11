@@ -11,10 +11,6 @@ namespace framework\blog {
     error_reporting(E_ALL | E_STRICT);
     ini_set("display_errors", 1);
 
-    spl_autoload_register(function($class) {
-        include $_SERVER['DOCUMENT_ROOT'] . "/undergroundartschool/" . str_replace('\\', '/', $class) . '.php';
-
-    });
 
     use framework\database\Database;
     use framework\libs\Authenticate;

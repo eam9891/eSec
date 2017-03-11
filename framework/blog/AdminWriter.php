@@ -25,18 +25,18 @@ namespace framework\blog {
             $time = date('h:i A', strtotime($obj->date));
 
             if ($obj->published) {
-                $publishButton = <<<publishButton
+                $publishButton = <<<revertButton
                     <button type='button' class='btn btn-default disabled'> Published </button>
-                    <button type='button' class='btn btn-default btn-info revertPublished' value='$obj->id'> Revert </button>
+                    <button type='button' class='btn btn-default btn-info revertPost' value='$obj->id'> Revert </button>
                 
-publishButton;
+revertButton;
             } else {
-                $publishButton = <<<revertButtons
+                $publishButton = <<<publishButton
 
                     
                     <button type='button' class='btn btn-info publishPost' value='$obj->id'> Publish </button>
                 
-revertButtons;
+publishButton;
             }
 
 

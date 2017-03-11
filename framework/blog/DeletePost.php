@@ -50,12 +50,11 @@ class DeletePost {
 
             if (!isset($error)) {
 
-                $query = "SELECT * FROM $this->table WHERE postID = $this->postID";
+                $query = "DELETE FROM $this->table WHERE postID = $this->postID";
                 Database::query($query);
 
+                return;
 
-
-                header("Location: index.php");
             } else {
                 echo $error;
             }

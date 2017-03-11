@@ -2,23 +2,20 @@
 /**
  * Created by PhpStorm.
  * User: Ethan
- * Date: 3/4/2017
- * Time: 7:03 PM
+ * Date: 3/9/2017
+ * Time: 5:57 PM
  */
 
 namespace framework\blog {
 
-    error_reporting(E_ALL | E_STRICT);
-    ini_set("display_errors", 1);
 
     use framework\database\Database;
     use framework\libs\Authenticate;
 
+    class SubmitEdits {
+        private $postTitle, $postCont, $postAuthor, $postTable, $postID;
 
-    class SubmitPost {
-        private $postTitle, $postCont, $postAuthor;
-
-        public function submitPost(array $params) {
+        public function submitEdits(array $params) {
 
             $auth = new Authenticate("contributor");
 
@@ -46,22 +43,39 @@ namespace framework\blog {
                 $error[] = 'Please enter the content.';
             }
 
+            // Make sure we know which table to store it in
+            if(isset($params['postTable'])) {
+                $this->postTable = $params['postTable'];
+                unset($params['postTable']);
+            } else {
+                $error[] = 'Error: Undefined Table!';
+            }
+
+            // Make sure we know which table to store it in
+            if(isset($params['postID'])) {
+                $this->postID = $params['postID'];
+                unset($params['postID']);
+            } else {
+                $error[] = 'Error: Undefined postID!';
+            }
+
 
             if(!isset($error)){
 
+
                 try {
 
-                    //insert into database
-                    $query = '
-                            INSERT INTO blogSubmissions (postTitle,postContent,postAuthor) 
-                            VALUES (:postTitle, :postCont, :postAuthor)
-                        ';
+                    $setString = "
+                        postTitle = :postTitle, postContent = :postCont, postAuthor = :postAuthor
+                        WHERE postID = :postID
+                    ";
                     $query_params = array(
+                        ":postID" => $this->postID,
                         ':postTitle' => $this->postTitle,
                         ':postCont' => $this->postCont,
                         ':postAuthor' => $this->postAuthor
                     );
-                    Database::insert($query, $query_params);
+                    Database::update($this->postTable, $setString, $query_params);
 
                     //redirect to index page
                     //header('Location: 192.168.0.132/undergroundartschool/'.$this->role.'/');
@@ -79,4 +93,5 @@ namespace framework\blog {
             }
         }
     }
+
 }
